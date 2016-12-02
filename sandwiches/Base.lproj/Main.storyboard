@@ -62,6 +62,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Prep" image="second" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="tableView" destination="QS5-Rx-YEW" id="pll-gB-cE1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>

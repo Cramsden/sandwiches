@@ -1,0 +1,7 @@
+{
+"bread": ["sourdough", "honey wheat"],
+"cheese": ["swiss", "american"],
+"meat": ["mortadella", "spicy turkey", "chicken breast"],
+"spread": ["mayo", "mustard", "russian"],
+"veggie": ["mushrooms", "tomato", "lettuce", "onion"]
+}

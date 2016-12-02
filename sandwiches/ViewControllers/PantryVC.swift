@@ -1,7 +1,7 @@
 import UIKit
 
-class PrepVC: UIViewController {
-
+class PantryVC: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -11,4 +11,3 @@ class PrepVC: UIViewController {
     }
     
 }
-
