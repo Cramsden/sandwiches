@@ -1,0 +1,17 @@
+{
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "connect": "^3.4.1",
+    "express": "^4.14.0",
+    "linq": "^3.0.5",
+    "underscore": "^1.8.3"
+  },
+  "engines": {
+    "node": ">=6.0.0",
+    "npm": ">=3.9.0"
+  }
+}
