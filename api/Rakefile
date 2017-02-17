@@ -1,0 +1,8 @@
+require_relative 'lib/api'
+
+desc 'it generates sandwich data and writes to the given path'
+task :generate, [:file_path] do |task, args|
+  file_path = args[:file_path]
+  fail 'Please provide an output path!' unless file_path
+  Sammies::API.generate_data_to(['bread', 'cheese', 'meat', 'spread', 'veggie'], file_path)
+end

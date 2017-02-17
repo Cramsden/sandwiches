@@ -1,0 +1,13 @@
+# Dummy API for Generating Sammy Data
+
+## Setup
+
+The following will install a few gems to `local_gems`:
+```bundle install```
+
+## Use
+
+Run the following:
+```bundle exec rake generate[$(path_to_file)]```
+
+Then, look for your `sammy_seeds.json` file! Yip!
