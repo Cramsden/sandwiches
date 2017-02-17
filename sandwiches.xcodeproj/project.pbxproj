@@ -16,7 +16,6 @@
 		B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEE1DF1FBCA003C596A /* PrepVC.swift */; };
 		B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */; };
 		B3925BF51DF1FC13003C596A /* IngredientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BF41DF1FC13003C596A /* IngredientFactory.swift */; };
-		B3925BF81DF20574003C596A /* Ingredients.json in Resources */ = {isa = PBXBuildFile; fileRef = B3925BF71DF20574003C596A /* Ingredients.json */; };
 		B397B0B11DDF79C10079BF6A /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B397B0B01DDF79C10079BF6A /* Ingredient.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,6 @@
 		B3925BEE1DF1FBCA003C596A /* PrepVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepVC.swift; path = ViewControllers/PrepVC.swift; sourceTree = "<group>"; };
 		B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichVC.swift; path = ViewControllers/SandwichVC.swift; sourceTree = "<group>"; };
 		B3925BF41DF1FC13003C596A /* IngredientFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientFactory.swift; path = Factories/IngredientFactory.swift; sourceTree = "<group>"; };
-		B3925BF71DF20574003C596A /* Ingredients.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Ingredients.json; path = Resources/Ingredients.json; sourceTree = "<group>"; };
 		B397B0B01DDF79C10079BF6A /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ingredient.swift; path = Models/Ingredient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,7 +64,6 @@
 		B3697BB21DDF6E90002A3EE0 /* sandwiches */ = {
 			isa = PBXGroup;
 			children = (
-				B3925BF61DF2053A003C596A /* Resources */,
 				B3925BF31DF1FBDA003C596A /* Factories */,
 				B3925BEC1DF1FB7E003C596A /* ViewControllers */,
 				B397B0AF1DDF79880079BF6A /* Models */,
@@ -95,14 +92,6 @@
 				B3925BF41DF1FC13003C596A /* IngredientFactory.swift */,
 			);
 			name = Factories;
-			sourceTree = "<group>";
-		};
-		B3925BF61DF2053A003C596A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				B3925BF71DF20574003C596A /* Ingredients.json */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		B397B0AF1DDF79880079BF6A /* Models */ = {
@@ -173,7 +162,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3925BF81DF20574003C596A /* Ingredients.json in Resources */,
 				B3697BC01DDF6E90002A3EE0 /* LaunchScreen.storyboard in Resources */,
 				B3697BBD1DDF6E90002A3EE0 /* Assets.xcassets in Resources */,
 				B3697BBB1DDF6E90002A3EE0 /* Main.storyboard in Resources */,

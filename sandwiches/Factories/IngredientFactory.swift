@@ -28,7 +28,19 @@ struct IngredientFactory {
         }
         
         for food in Food.all() {
-            // TODO: Write new ingredient to CoreData (via a service?)
+            guard let foodCollection = ingredients?[food.rawValue],
+                let foodArray = foodCollection as? [JSONifiable]
+            else { return }
+            
+            foodArray.forEach { foodItem in
+//                guard let foodItem = validItem(foodItem) else { return }
+//                let ingredient = Ingredient()
+//                ingredient.name = foodItem["name"]
+//                ingredient.details = foodItem["name"]
+//                coredata.save(ingredient)
+            }
         }
     }
+    
+//    static func validItem() -> Bool {}
 }

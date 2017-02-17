@@ -13,12 +13,10 @@ class Ingredient: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var details: String
     @NSManaged var amount: Int
-    // ???: May need to be NSData???
     @NSManaged var nutritionInfoData: Data
     @NSManaged var categoryRaw: String
 
     var nutritionInfo: JSONifiable {
-        // TODO: Error Handling 😱
         get {
             return try! JSONSerialization.jsonObject(with: nutritionInfoData, options: .allowFragments) as! JSONifiable
         }
