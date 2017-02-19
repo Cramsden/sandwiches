@@ -24,6 +24,5 @@ npm-debug.log
 
 #### API ####
 local_gems/
-.bundle
 Gemfile.lock
 *.json
