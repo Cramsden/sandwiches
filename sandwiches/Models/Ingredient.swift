@@ -13,6 +13,7 @@ class Ingredient: NSManagedObject {
     @NSManaged var name: String
     @NSManaged var details: String
     @NSManaged var amount: Int
+    @NSManaged var bestBy: Date
     @NSManaged var nutritionInfoData: Data
     @NSManaged var categoryRaw: String
 
