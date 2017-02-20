@@ -1,12 +1,9 @@
 var express = require('express');
 var _ = require('underscore');
 var linq = require('linq');
+var fs = require ('fs');
 
 const app = express()
-
-const ingredients = {
-  "sammies": "fun"
-}
 
 app.get('/', function (req, res) {
   res.send('Welcome!');
@@ -14,8 +11,13 @@ app.get('/', function (req, res) {
 
 app.get('/ingredients', function (req, res) {
   res.writeHead(200, { 'Content-Type': 'application/json' });
-  res.write(JSON.stringify(ingredients));
-  res.end();
+  fs.readFile(__dirname + '/sammy_seeds.json', function (err, data) {
+    if (err) {
+      throw err
+    }
+    res.write(data.toString())
+    res.end();
+  });
 });
 
 app.listen(8000);
