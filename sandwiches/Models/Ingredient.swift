@@ -1,4 +1,5 @@
-import CoreData
+import Foundation
+
 typealias JSONifiable = [String: Any]
 
 enum Food: String {
@@ -9,23 +10,13 @@ enum Food: String {
     }
 }
 
-class Ingredient: NSManagedObject {
-    @NSManaged var name: String
-    @NSManaged var details: String
-    @NSManaged var amount: Int
-    @NSManaged var bestBy: Date
-    @NSManaged var nutritionInfoData: Data
-    @NSManaged var categoryRaw: String
-
-    var nutritionInfo: JSONifiable {
-        get {
-            return try! JSONSerialization.jsonObject(with: nutritionInfoData, options: .allowFragments) as! JSONifiable
-        }
-        set {
-            nutritionInfoData = try! JSONSerialization.data(withJSONObject: nutritionInfo, options: .prettyPrinted)
-        }
-    }
-    
+struct Ingredient {
+    let name: String
+    let details: String
+    var amount: Int
+    let bestBy: Date
+    let nutritionInfoData: Data?
+    var categoryRaw: String
     var category: Food {
         get {
             return Food(rawValue: categoryRaw) ?? .dunno
@@ -33,5 +24,14 @@ class Ingredient: NSManagedObject {
         set {
             self.categoryRaw = newValue.rawValue
         }
+    }
+    
+    init (name: String, details: String, amount: Int, bestBy: Date, category: Food) {
+        self.name = name
+        self.details = details
+        self.amount = amount
+        self.bestBy = bestBy
+        self.categoryRaw = category.rawValue
+        self.nutritionInfoData = nil
     }
 }
