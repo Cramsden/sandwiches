@@ -1,14 +1,16 @@
 import UIKit
 
+typealias Pantry = [Food: [Ingredient]]
+
 class PantryVC : UIViewController {
-    var ingredients: [Ingredient]?
+    var pantry: Pantry?
     var ingredientService = IngredientService()
-    
+
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
-        ingredientService.getAllIngredients { [weak self] ingredients in
-            self?.ingredients = ingredients
+        ingredientService.getAllIngredients {  [weak self] response in
+            self?.pantry = response
             self?.tableView.reloadData()
         }
     }
@@ -23,22 +25,27 @@ class PantryVC : UIViewController {
 
 extension PantryVC : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return pantry?.keys.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredients?.count ?? 0
+        let food = Food.all()[section]
+        return pantry?[food]?.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+        let section = indexPath.section
+        let row = indexPath.row
+        let food = Food.all()[section]
 
-        if let ingredients = ingredients {
-            let ingredient = ingredients[indexPath.row]
-            cell.textLabel?.text = ingredient.name
-            cell.detailTextLabel?.text = "Amount: \(ingredient.amount)"
-        }
-        
+        guard let pantry = pantry,
+            let ingredients = pantry[food],
+            ingredients.count > row else { return cell }
+
+        let ingredientForRow = ingredients[row]
+        cell.textLabel?.text = ingredientForRow.name
+        cell.detailTextLabel?.text = "Amount: \(ingredientForRow.amount)"
         return cell
     }
 }
