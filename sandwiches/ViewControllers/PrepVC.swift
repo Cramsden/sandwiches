@@ -1,11 +1,22 @@
 import UIKit
 
 class PrepVC: UIViewController {
+    
+    var selectedSandwichIngredients:[Ingredient]?
 
-    @IBOutlet var tableView: UIView!
+    // TODO: Could we make outlets not weak?
+
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let parent = parent as? ParentVC {
+            selectedSandwichIngredients = parent.selectedIngredients
+            tableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -16,16 +27,14 @@ class PrepVC: UIViewController {
 
 extension PrepVC: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = UITableViewCell()
+        cell.textLabel?.text = selectedSandwichIngredients?[indexPath.row].name
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return selectedSandwichIngredients?.count ?? 0  
     }
     
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		23FA5051A3C70EE37D34D57E /* Pods_sandwiches.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B7E1E8D64F226140B4B5A3 /* Pods_sandwiches.framework */; };
+		68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */; };
 		B36948461E5A595500FB5148 /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36948451E5A595500FB5148 /* IngredientService.swift */; };
 		B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3697BB31DDF6E90002A3EE0 /* AppDelegate.swift */; };
 		B3697BBB1DDF6E90002A3EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3697BB91DDF6E90002A3EE0 /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		5CC4E66C1A4946B9C807CADF /* Pods-sandwiches.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwiches.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches.debug.xcconfig"; sourceTree = "<group>"; };
+		68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentVC.swift; path = ViewControllers/ParentVC.swift; sourceTree = "<group>"; };
 		693BCF5446A664BD37756AFB /* Pods-sandwiches.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwiches.release.xcconfig"; path = "Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches.release.xcconfig"; sourceTree = "<group>"; };
 		98B7E1E8D64F226140B4B5A3 /* Pods_sandwiches.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sandwiches.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B36948451E5A595500FB5148 /* IngredientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientService.swift; path = Services/IngredientService.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				B3925BED1DF1FBCA003C596A /* PantryVC.swift */,
 				B3925BEE1DF1FBCA003C596A /* PrepVC.swift */,
 				B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */,
+				68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				B3925BF01DF1FBCA003C596A /* PantryVC.swift in Sources */,
 				B397B0B11DDF79C10079BF6A /* Ingredient.swift in Sources */,
 				B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */,
+				68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */,
 				B36948461E5A595500FB5148 /* IngredientService.swift in Sources */,
 				B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */,
 				B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */,
