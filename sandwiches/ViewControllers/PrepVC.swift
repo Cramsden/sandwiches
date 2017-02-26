@@ -1,8 +1,8 @@
 import UIKit
 
 class PrepVC: UIViewController {
-    var selectedSandwichIngredients: [Ingredient]?
-    var prepIngredients: Pantry?
+    fileprivate var selectedIndexPaths: [IndexPath] = []
+    fileprivate var prepIngredients: Pantry?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -14,6 +14,7 @@ class PrepVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if let parent = parent as? ParentVC {
             prepIngredients = parent.sharedItems
+            selectedIndexPaths = []
             tableView.reloadData()
         }
     }
@@ -24,6 +25,7 @@ class PrepVC: UIViewController {
 }
 
 extension PrepVC: UITableViewDataSource {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return Food.all().count
     }
@@ -50,6 +52,23 @@ extension PrepVC: UITableViewDataSource {
         let ingredientForRow = ingredients[row]
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(ingredientForRow.name)")
         cell.textLabel?.text = ingredientForRow.name
+        cell.selectionStyle = .none
+        cell.isSelected = selectedIndexPaths.contains(indexPath)
+        cell.accessoryType = cell.isSelected ? .checkmark : .none
         return cell
+    }
+}
+
+extension PrepVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndexPaths.append(indexPath)
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+    }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let matchingIndex = selectedIndexPaths.index(of: indexPath) {
+            selectedIndexPaths.remove(at: matchingIndex)
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        }
     }
 }
