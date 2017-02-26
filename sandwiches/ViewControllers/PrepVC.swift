@@ -5,6 +5,7 @@ class PrepVC: UIViewController {
     fileprivate var prepIngredients: Pantry = [:]
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var preppedView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,6 +16,7 @@ class PrepVC: UIViewController {
         if let parent = parent as? ParentVC {
             prepIngredients = parent.sharedItems
             selectedIndexPaths = []
+            preppedView.isHidden
             tableView.reloadData()
         }
     }
