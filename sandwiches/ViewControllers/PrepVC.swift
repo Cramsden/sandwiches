@@ -2,7 +2,7 @@ import UIKit
 
 class PrepVC: UIViewController {
     fileprivate var selectedIndexPaths: [IndexPath] = []
-    fileprivate var prepIngredients: Pantry?
+    fileprivate var prepIngredients: Pantry = [:]
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -32,12 +32,12 @@ extension PrepVC: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let food = Food.all()[section]
-        return prepIngredients?[food]?.count ?? 0
+        return prepIngredients[food]?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let food = Food.all()[section]
-        return "\(food.rawValue.uppercased()) - \(prepIngredients?[food]?.count ?? 0) ITEMS"
+        return "\(food.rawValue.uppercased()) - \(prepIngredients[food]?.count ?? 0) ITEMS"
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,8 +45,7 @@ extension PrepVC: UITableViewDataSource {
         let row = indexPath.row
         let food = Food.all()[section]
 
-        guard let prepIngredients = prepIngredients,
-            let ingredients = prepIngredients[food],
+        guard let ingredients = prepIngredients[food],
             ingredients.count > row else { return UITableViewCell() }
 
         let ingredientForRow = ingredients[row]

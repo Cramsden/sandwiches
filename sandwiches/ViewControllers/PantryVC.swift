@@ -4,7 +4,7 @@ typealias Pantry = [Food: [Ingredient]]
 
 class PantryVC: UIViewController {
     var selectedIngredients: [Ingredient] = []
-    var pantry: Pantry?
+    var pantry: Pantry = [:]
     var ingredientService = IngredientService()
 
     @IBOutlet weak var tableView: UITableView!
@@ -30,12 +30,12 @@ extension PantryVC : UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let food = Food.all()[section]
-        return pantry?[food]?.count ?? 0
+        return pantry[food]?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let food = Food.all()[section]
-        return "\(food.rawValue.uppercased()) - \(pantry?[food]?.count ?? 0) ITEMS"
+        return "\(food.rawValue.uppercased()) - \(pantry[food]?.count ?? 0) ITEMS"
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,8 +43,7 @@ extension PantryVC : UITableViewDataSource {
         let row = indexPath.row
         let food = Food.all()[section]
 
-        guard let pantry = pantry,
-            let ingredients = pantry[food],
+        guard let ingredients = pantry[food],
             ingredients.count > row else { return UITableViewCell() }
 
         let ingredientForRow = ingredients[row]
@@ -60,21 +59,15 @@ extension PantryVC: UITableViewDelegate {
         let section = indexPath.section
         let row = indexPath.row
         let selectedFoodType = Food.all()[section]
-        guard var pantry = pantry,
-            let foodsForType = pantry[selectedFoodType],
-            let parent = parent as? ParentVC
+        guard let parent = parent as? ParentVC
             else { return }
 
-        let selectedIngredient = foodsForType[row]
-
-        if let _ = parent.sharedItems[selectedFoodType] {
-            parent.sharedItems[selectedFoodType]!.append(selectedIngredient)
-        } else {
-            parent.sharedItems[selectedFoodType] = [selectedIngredient]
-        }
-
-        if selectedIngredient.amount > 0 {
-            self.pantry?[selectedFoodType]?[row].amount = selectedIngredient.amount - 1
+        if let prepIngredient = self.pantry[selectedFoodType]?[row].takeOneForPrep() {
+            if let _ = parent.sharedItems[selectedFoodType] {
+                parent.sharedItems[selectedFoodType]!.append(prepIngredient)
+            } else {
+                parent.sharedItems[selectedFoodType] = [prepIngredient]
+            }
             tableView.reloadData()
         }
     }

@@ -34,4 +34,18 @@ struct Ingredient {
         self.categoryRaw = category.rawValue
         self.nutritionInfoData = nil
     }
+
+    mutating func takeOneForPrep() -> Ingredient? {
+        guard amount > 0 else { return nil }
+
+        amount -= 1
+
+        return Ingredient(
+            name: name,
+            details: details,
+            amount: 1,
+            bestBy: bestBy,
+            category: category
+        )
+    }
 }
