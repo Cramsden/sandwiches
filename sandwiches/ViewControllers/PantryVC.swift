@@ -32,7 +32,8 @@ extension PantryVC : UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Food.all()[section].rawValue
+        let food = Food.all()[section]
+        return "\(food.rawValue.uppercased()) - \(pantry?[food]?.count ?? 0) ITEMS"
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

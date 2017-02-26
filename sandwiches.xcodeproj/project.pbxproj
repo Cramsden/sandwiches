@@ -90,7 +90,6 @@
 			children = (
 				B397B0AF1DDF79880079BF6A /* Models */,
 				B36948421E5A579100FB5148 /* Services */,
-				B3925BF31DF1FBDA003C596A /* Factories */,
 				B3925BEC1DF1FB7E003C596A /* ViewControllers */,
 				B3697BC11DDF6E90002A3EE0 /* Info.plist */,
 				B3697BBE1DDF6E90002A3EE0 /* LaunchScreen.storyboard */,
@@ -110,13 +109,6 @@
 				68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */,
 			);
 			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		B3925BF31DF1FBDA003C596A /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Factories;
 			sourceTree = "<group>";
 		};
 		B397B0AF1DDF79880079BF6A /* Models */ = {
