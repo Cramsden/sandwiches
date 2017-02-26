@@ -1,5 +1,11 @@
 {
   "main": "server.js",
+  "description": "a simple mock service to provide sandwhich data",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:rebeccatron/sandwiches.git",
+    "private": true
+  },
   "scripts": {
     "start": "node server.js"
   },
