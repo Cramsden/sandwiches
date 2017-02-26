@@ -11,5 +11,5 @@ class ParentVC: UITabBarController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
 }

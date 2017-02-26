@@ -2,7 +2,7 @@ import UIKit
 
 typealias Pantry = [Food: [Ingredient]]
 
-class PantryVC : UIViewController {
+class PantryVC: UIViewController {
     var selectedIngredients: [Ingredient] = []
     var pantry: Pantry?
     var ingredientService = IngredientService()
@@ -66,8 +66,6 @@ extension PantryVC: UITableViewDelegate {
         if let parent = parent as? ParentVC {
             parent.selectedIngredients.append(selectedIngredient)
 
-            // TODO: This is kinda gross and potentially a shitty way to do this? but in order to get it
-            // to actually deduct we have to access the actual pantry ingredient I think?
             if selectedIngredient.amount > 0 {
                 self.pantry?[selectedFoodType]?[row].amount = selectedIngredient.amount - 1
                 tableView.reloadData()

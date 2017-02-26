@@ -4,7 +4,7 @@ typealias JSONifiable = [String: Any]
 
 enum Food: String {
     case bread, cheese, meat, spread, veggie, dunno
-    
+
     static func all() -> [Food] {
         return [bread, cheese, meat, spread, veggie]
     }
@@ -25,7 +25,7 @@ struct Ingredient {
             self.categoryRaw = newValue.rawValue
         }
     }
-    
+
     init (name: String, details: String, amount: Int, bestBy: Date, category: Food) {
         self.name = name
         self.details = details

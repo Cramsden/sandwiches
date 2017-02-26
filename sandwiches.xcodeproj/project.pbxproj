@@ -140,6 +140,7 @@
 				B3697BAE1DDF6E90002A3EE0 /* Resources */,
 				0EF4237970846ADDAD01A2BA /* [CP] Embed Pods Frameworks */,
 				89F3BA6E3C2F1257F0B37530 /* [CP] Copy Pods Resources */,
+				B36E8B9D1E6267EA00F49C0E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -227,6 +228,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B36E8B9D1E6267EA00F49C0E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 		D7D80BE4A355DE07C70E1178 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
