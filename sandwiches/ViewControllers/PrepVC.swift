@@ -25,14 +25,9 @@ class PrepVC: UIViewController {
             tableView.reloadData()
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
 
 extension PrepVC: UITableViewDataSource {
-
     func numberOfSections(in tableView: UITableView) -> Int {
         return Food.all().count
     }

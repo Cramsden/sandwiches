@@ -14,6 +14,7 @@
 		B3697BBB1DDF6E90002A3EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3697BB91DDF6E90002A3EE0 /* Main.storyboard */; };
 		B3697BBD1DDF6E90002A3EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3697BBC1DDF6E90002A3EE0 /* Assets.xcassets */; };
 		B3697BC01DDF6E90002A3EE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3697BBE1DDF6E90002A3EE0 /* LaunchScreen.storyboard */; };
+		B36E8BA71E63932C00F49C0E /* Sandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36E8BA61E63932C00F49C0E /* Sandwich.swift */; };
 		B3925BF01DF1FBCA003C596A /* PantryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BED1DF1FBCA003C596A /* PantryVC.swift */; };
 		B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEE1DF1FBCA003C596A /* PrepVC.swift */; };
 		B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */; };
@@ -32,6 +33,7 @@
 		B3697BBC1DDF6E90002A3EE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3697BBF1DDF6E90002A3EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3697BC11DDF6E90002A3EE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B36E8BA61E63932C00F49C0E /* Sandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sandwich.swift; sourceTree = "<group>"; };
 		B3925BED1DF1FBCA003C596A /* PantryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PantryVC.swift; path = ViewControllers/PantryVC.swift; sourceTree = "<group>"; };
 		B3925BEE1DF1FBCA003C596A /* PrepVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepVC.swift; path = ViewControllers/PrepVC.swift; sourceTree = "<group>"; };
 		B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichVC.swift; path = ViewControllers/SandwichVC.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				B397B0B01DDF79C10079BF6A /* Ingredient.swift */,
+				B36E8BA61E63932C00F49C0E /* Sandwich.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			files = (
 				B3925BF01DF1FBCA003C596A /* PantryVC.swift in Sources */,
 				B397B0B11DDF79C10079BF6A /* Ingredient.swift in Sources */,
+				B36E8BA71E63932C00F49C0E /* Sandwich.swift in Sources */,
 				B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */,
 				68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */,
 				B36948461E5A595500FB5148 /* IngredientService.swift in Sources */,
