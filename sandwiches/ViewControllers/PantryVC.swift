@@ -10,6 +10,8 @@ class PantryVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
+        tableView.tableFooterView = UIView()
+
         ingredientService.getAllIngredients {response in
             self.pantry = response
             self.tableView.reloadData()
@@ -23,7 +25,7 @@ class PantryVC: UIViewController {
 
 extension PantryVC : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return pantry?.keys.count ?? 0
+        return Food.all().count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,7 +39,6 @@ extension PantryVC : UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let section = indexPath.section
         let row = indexPath.row
         let food = Food.all()[section]
@@ -59,17 +60,22 @@ extension PantryVC: UITableViewDelegate {
         let section = indexPath.section
         let row = indexPath.row
         let selectedFoodType = Food.all()[section]
-        guard let pantry = pantry,
-            var foodsForType = pantry[selectedFoodType]
+        guard var pantry = pantry,
+            let foodsForType = pantry[selectedFoodType],
+            let parent = parent as? ParentVC
             else { return }
-        let selectedIngredient = foodsForType[row]
-        if let parent = parent as? ParentVC {
-            parent.selectedIngredients.append(selectedIngredient)
 
-            if selectedIngredient.amount > 0 {
-                self.pantry?[selectedFoodType]?[row].amount = selectedIngredient.amount - 1
-                tableView.reloadData()
-            }
+        let selectedIngredient = foodsForType[row]
+
+        if let _ = parent.sharedItems[selectedFoodType] {
+            parent.sharedItems[selectedFoodType]!.append(selectedIngredient)
+        } else {
+            parent.sharedItems[selectedFoodType] = [selectedIngredient]
+        }
+
+        if selectedIngredient.amount > 0 {
+            self.pantry?[selectedFoodType]?[row].amount = selectedIngredient.amount - 1
+            tableView.reloadData()
         }
     }
 }

@@ -98,14 +98,6 @@
                                     <constraint firstItem="mGb-8E-yeD" firstAttribute="centerX" secondItem="yxS-FL-aQx" secondAttribute="centerX" id="oFE-dm-DAK"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UxW-QX-JRT">
-                                <rect key="frame" x="0.0" y="70" width="375" height="325.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="8rJ-Kc-sve" id="2PR-VL-pNd"/>
-                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="RpD-hL-hsa"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ul-MK-kbv" userLabel="Prepped 🍔">
                                 <rect key="frame" x="0.0" y="395.5" width="375" height="222.5"/>
                                 <subviews>
@@ -126,6 +118,14 @@
                                     <constraint firstItem="qB9-I7-jE3" firstAttribute="leading" secondItem="9ul-MK-kbv" secondAttribute="leading" id="whh-fY-rrN"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UxW-QX-JRT">
+                                <rect key="frame" x="0.0" y="70" width="375" height="325.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="8rJ-Kc-sve" id="2PR-VL-pNd"/>
+                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="RpD-hL-hsa"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
