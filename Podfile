@@ -1,5 +1,6 @@
 workspace 'sandwiches'
-platform :ios, ‘9.3’
+project 'sandwiches.xcodeproj'
+platform :ios, '9.3'
 use_frameworks!
 
 target 'sandwiches' do
