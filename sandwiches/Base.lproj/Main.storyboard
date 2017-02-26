@@ -116,6 +116,9 @@
                                                 <state key="normal" title="Sammy Time!">
                                                     <color key="titleColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="sammyTimeTapped:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="wKO-li-OUU"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -145,7 +148,7 @@
                                             <constraint firstItem="j2f-vV-aPd" firstAttribute="centerY" secondItem="9ul-MK-kbv" secondAttribute="centerY" id="5P5-eF-j4l"/>
                                             <constraint firstItem="qB9-I7-jE3" firstAttribute="top" secondItem="9ul-MK-kbv" secondAttribute="top" constant="8" id="UzR-p4-TKC"/>
                                             <constraint firstAttribute="trailing" secondItem="qB9-I7-jE3" secondAttribute="trailing" id="bG2-uX-H1T"/>
-                                            <constraint firstItem="j2f-vV-aPd" firstAttribute="top" secondItem="qB9-I7-jE3" secondAttribute="bottom" constant="9" id="eeq-At-W6K"/>
+                                            <constraint firstItem="j2f-vV-aPd" firstAttribute="top" secondItem="qB9-I7-jE3" secondAttribute="bottom" priority="999" constant="9" id="eeq-At-W6K"/>
                                             <constraint firstItem="j2f-vV-aPd" firstAttribute="centerX" secondItem="9ul-MK-kbv" secondAttribute="centerX" id="jGZ-G1-em2"/>
                                             <constraint firstItem="qB9-I7-jE3" firstAttribute="leading" secondItem="9ul-MK-kbv" secondAttribute="leading" id="whh-fY-rrN"/>
                                         </constraints>
@@ -155,7 +158,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="UxW-QX-JRT" firstAttribute="height" secondItem="QS5-Rx-YEW" secondAttribute="height" multiplier="1:2" id="3Ug-Ux-H74"/>
+                            <constraint firstItem="UxW-QX-JRT" firstAttribute="height" relation="greaterThanOrEqual" secondItem="QS5-Rx-YEW" secondAttribute="height" multiplier="1:2" id="3Ug-Ux-H74"/>
                             <constraint firstItem="yxS-FL-aQx" firstAttribute="height" secondItem="QS5-Rx-YEW" secondAttribute="height" multiplier="1:16" id="UeS-IY-RoT"/>
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="cr6-1c-QAn" secondAttribute="bottom" id="YNp-Hf-BMD"/>
                             <constraint firstItem="cr6-1c-QAn" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="Z0B-4B-Fsa"/>

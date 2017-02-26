@@ -7,6 +7,11 @@ class PrepVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var preppedView: UIView!
 
+    @IBAction func sammyTimeTapped(_ sender: Any) {
+        let previously = preppedView.isHidden
+        preppedView.isHidden = previously ? false : true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
@@ -16,7 +21,7 @@ class PrepVC: UIViewController {
         if let parent = parent as? ParentVC {
             prepIngredients = parent.sharedItems
             selectedIndexPaths = []
-            preppedView.isHidden
+            preppedView.isHidden = true
             tableView.reloadData()
         }
     }
