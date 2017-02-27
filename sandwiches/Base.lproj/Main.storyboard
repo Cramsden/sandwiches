@@ -142,6 +142,7 @@
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="made-sandwich" translatesAutoresizingMaskIntoConstraints="NO" id="j2f-vV-aPd">
                                                 <rect key="frame" x="97" y="37" width="150" height="98.5"/>
+                                                <gestureRecognizers/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -153,6 +154,9 @@
                                             <constraint firstItem="j2f-vV-aPd" firstAttribute="centerX" secondItem="9ul-MK-kbv" secondAttribute="centerX" id="jGZ-G1-em2"/>
                                             <constraint firstItem="qB9-I7-jE3" firstAttribute="leading" secondItem="9ul-MK-kbv" secondAttribute="leading" id="whh-fY-rrN"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="WhO-Aq-eDU" appends="YES" id="Pyv-xf-pPu"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -174,6 +178,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="WhO-Aq-eDU" userLabel="madeSandwichTap">
+                    <connections>
+                        <action selector="madeSandwichTapped:" destination="8rJ-Kc-sve" id="vnt-UG-aZ3"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="804" y="25.637181409295355"/>
         </scene>

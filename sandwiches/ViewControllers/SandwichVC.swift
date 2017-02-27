@@ -34,7 +34,12 @@ extension SandwichVC: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard sandwiches.count > indexPath.row else { return UITableViewCell() }
+
+        let sandwichForRow = sandwiches[indexPath.row]
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(sandwichForRow.name)")
+        cell.textLabel?.text = sandwichForRow.name
+        return cell
     }
 
     private func addNoSammiesLabel() {

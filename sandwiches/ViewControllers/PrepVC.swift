@@ -1,6 +1,7 @@
 import UIKit
 
 class PrepVC: UIViewController {
+    fileprivate let dateFormatter = DateFormatter()
     fileprivate var selectedIndexPaths: [IndexPath] = []
     fileprivate var prepIngredients: Pantry = [:]
 
@@ -12,8 +13,13 @@ class PrepVC: UIViewController {
         preppedView.isHidden = previously ? false : true
     }
 
+    @IBAction func madeSandwichTapped(_ sender: Any) {
+        makeSandwich()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateFormatter.dateFormat = "HH:mm"
         tableView.tableFooterView = UIView()
     }
 
@@ -24,6 +30,43 @@ class PrepVC: UIViewController {
             preppedView.isHidden = true
             tableView.reloadData()
         }
+    }
+
+    private func makeSandwich() {
+        var sandwichIngredients: [Ingredient] = []
+
+        selectedIndexPaths.forEach { selection in
+            let foodType = Food.all()[selection.section]
+            if let ingredient = prepIngredients[foodType]?[selection.row] {
+                sandwichIngredients.append(ingredient)
+            }
+        }
+
+        if !sandwichIngredients.isEmpty {
+            let sandwich = newSandwichFrom(sandwichIngredients)
+            (parent as? ParentVC)?.sharedSandwiches.append(sandwich)
+        }
+
+        resetInventory()
+        tableView.reloadData()
+    }
+
+    private func newSandwichFrom(_ ingredients: [Ingredient]) -> Sandwich {
+        return Sandwich(
+            name: "\(dateFormatter.string(from: Date())) Sandwich",
+            ingredients: ingredients,
+            details: ""
+        )
+    }
+
+    private func resetInventory() {
+        selectedIndexPaths.forEach { selection in
+            let foodType = Food.all()[selection.section]
+            (parent as? ParentVC)?.sharedItems[foodType]?.remove(at: selection.row)
+            self.prepIngredients[foodType]?.remove(at: selection.row)
+        }
+
+        selectedIndexPaths = []
     }
 }
 

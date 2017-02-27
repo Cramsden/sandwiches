@@ -17,10 +17,6 @@ class PantryVC: UIViewController {
             self.tableView.reloadData()
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
 
 extension PantryVC : UITableViewDataSource {
