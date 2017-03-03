@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		079F942F1E68EE4B005C2D47 /* IngredientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079F942E1E68EE4B005C2D47 /* IngredientSpec.swift */; };
 		23FA5051A3C70EE37D34D57E /* Pods_sandwiches.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B7E1E8D64F226140B4B5A3 /* Pods_sandwiches.framework */; };
+		3254C3CE85AFAD977DCA2013 /* Pods_sandwichesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E36171B67686AB94A356A4 /* Pods_sandwichesTests.framework */; };
 		68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */; };
 		B36948461E5A595500FB5148 /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36948451E5A595500FB5148 /* IngredientService.swift */; };
 		B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3697BB31DDF6E90002A3EE0 /* AppDelegate.swift */; };
@@ -21,7 +23,22 @@
 		B397B0B11DDF79C10079BF6A /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B397B0B01DDF79C10079BF6A /* Ingredient.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		079F94231E68E72A005C2D47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3697BA81DDF6E90002A3EE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B3697BAF1DDF6E90002A3EE0;
+			remoteInfo = sandwiches;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		079F941E1E68E729005C2D47 /* sandwichesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sandwichesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		079F94221E68E72A005C2D47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		079F942E1E68EE4B005C2D47 /* IngredientSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientSpec.swift; path = Models/IngredientSpec.swift; sourceTree = "<group>"; };
+		14CF8EC3FCEDAC86413C6F6A /* Pods-sandwichesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwichesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sandwichesTests/Pods-sandwichesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		28E36171B67686AB94A356A4 /* Pods_sandwichesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sandwichesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CC4E66C1A4946B9C807CADF /* Pods-sandwiches.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwiches.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches.debug.xcconfig"; sourceTree = "<group>"; };
 		68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentVC.swift; path = ViewControllers/ParentVC.swift; sourceTree = "<group>"; };
 		693BCF5446A664BD37756AFB /* Pods-sandwiches.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwiches.release.xcconfig"; path = "Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches.release.xcconfig"; sourceTree = "<group>"; };
@@ -38,9 +55,18 @@
 		B3925BEE1DF1FBCA003C596A /* PrepVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepVC.swift; path = ViewControllers/PrepVC.swift; sourceTree = "<group>"; };
 		B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichVC.swift; path = ViewControllers/SandwichVC.swift; sourceTree = "<group>"; };
 		B397B0B01DDF79C10079BF6A /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ingredient.swift; path = Models/Ingredient.swift; sourceTree = "<group>"; };
+		C75E5932E3CC600EA162C880 /* Pods-sandwichesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwichesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sandwichesTests/Pods-sandwichesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		079F941B1E68E729005C2D47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3254C3CE85AFAD977DCA2013 /* Pods_sandwichesTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B3697BAD1DDF6E90002A3EE0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,8 +83,35 @@
 			children = (
 				5CC4E66C1A4946B9C807CADF /* Pods-sandwiches.debug.xcconfig */,
 				693BCF5446A664BD37756AFB /* Pods-sandwiches.release.xcconfig */,
+				14CF8EC3FCEDAC86413C6F6A /* Pods-sandwichesTests.debug.xcconfig */,
+				C75E5932E3CC600EA162C880 /* Pods-sandwichesTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		079F941F1E68E72A005C2D47 /* sandwichesTests */ = {
+			isa = PBXGroup;
+			children = (
+				079F942D1E68EDF4005C2D47 /* Models */,
+				079F94281E68ECE4005C2D47 /* ViewControllers */,
+				079F94221E68E72A005C2D47 /* Info.plist */,
+			);
+			path = sandwichesTests;
+			sourceTree = "<group>";
+		};
+		079F94281E68ECE4005C2D47 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		079F942D1E68EDF4005C2D47 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				079F942E1E68EE4B005C2D47 /* IngredientSpec.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		B36948421E5A579100FB5148 /* Services */ = {
@@ -73,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				B3697BB21DDF6E90002A3EE0 /* sandwiches */,
+				079F941F1E68E72A005C2D47 /* sandwichesTests */,
 				B3697BB11DDF6E90002A3EE0 /* Products */,
 				0701A987AB7368C863B8E7C4 /* Pods */,
 				D2E2F0CD68E2AB83C5A03F4C /* Frameworks */,
@@ -83,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				B3697BB01DDF6E90002A3EE0 /* sandwiches.app */,
+				079F941E1E68E729005C2D47 /* sandwichesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				98B7E1E8D64F226140B4B5A3 /* Pods_sandwiches.framework */,
+				28E36171B67686AB94A356A4 /* Pods_sandwichesTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -133,6 +189,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		079F941D1E68E729005C2D47 /* sandwichesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 079F94271E68E72A005C2D47 /* Build configuration list for PBXNativeTarget "sandwichesTests" */;
+			buildPhases = (
+				256326C5918566C606B5D4CF /* [CP] Check Pods Manifest.lock */,
+				079F941A1E68E729005C2D47 /* Sources */,
+				079F941B1E68E729005C2D47 /* Frameworks */,
+				079F941C1E68E729005C2D47 /* Resources */,
+				EFC46DEE268359666E0961AF /* [CP] Embed Pods Frameworks */,
+				3B96B647B36C7D81FF66E90A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				079F94241E68E72A005C2D47 /* PBXTargetDependency */,
+			);
+			name = sandwichesTests;
+			productName = sandwichesTests;
+			productReference = 079F941E1E68E729005C2D47 /* sandwichesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B3697BAF1DDF6E90002A3EE0 /* sandwiches */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B3697BC41DDF6E90002A3EE0 /* Build configuration list for PBXNativeTarget "sandwiches" */;
@@ -160,10 +237,16 @@
 		B3697BA81DDF6E90002A3EE0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0800;
+				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = thoughtworks;
 				TargetAttributes = {
+					079F941D1E68E729005C2D47 = {
+						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B3697BAF1DDF6E90002A3EE0;
+					};
 					B3697BAF1DDF6E90002A3EE0 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -184,11 +267,19 @@
 			projectRoot = "";
 			targets = (
 				B3697BAF1DDF6E90002A3EE0 /* sandwiches */,
+				079F941D1E68E729005C2D47 /* sandwichesTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		079F941C1E68E729005C2D47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B3697BAE1DDF6E90002A3EE0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -215,6 +306,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		256326C5918566C606B5D4CF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3B96B647B36C7D81FF66E90A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sandwichesTests/Pods-sandwichesTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		89F3BA6E3C2F1257F0B37530 /* [CP] Copy Pods Resources */ = {
@@ -260,9 +381,32 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		EFC46DEE268359666E0961AF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sandwichesTests/Pods-sandwichesTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		079F941A1E68E729005C2D47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				079F942F1E68EE4B005C2D47 /* IngredientSpec.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B3697BAC1DDF6E90002A3EE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -279,6 +423,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		079F94241E68E72A005C2D47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B3697BAF1DDF6E90002A3EE0 /* sandwiches */;
+			targetProxy = 079F94231E68E72A005C2D47 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B3697BB91DDF6E90002A3EE0 /* Main.storyboard */ = {
@@ -300,6 +452,43 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		079F94251E68E72A005C2D47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14CF8EC3FCEDAC86413C6F6A /* Pods-sandwichesTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = sandwichesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thoughtworks.sandwiches.sandwichesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sandwiches.app/sandwiches";
+			};
+			name = Debug;
+		};
+		079F94261E68E72A005C2D47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C75E5932E3CC600EA162C880 /* Pods-sandwichesTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = sandwichesTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.thoughtworks.sandwiches.sandwichesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sandwiches.app/sandwiches";
+			};
+			name = Release;
+		};
 		B3697BC21DDF6E90002A3EE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -422,6 +611,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		079F94271E68E72A005C2D47 /* Build configuration list for PBXNativeTarget "sandwichesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				079F94251E68E72A005C2D47 /* Debug */,
+				079F94261E68E72A005C2D47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B3697BAB1DDF6E90002A3EE0 /* Build configuration list for PBXProject "sandwiches" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
