@@ -13,6 +13,17 @@ class PrepVC: UIViewController {
         preppedView.isHidden = previously ? false : true
     }
 
+    @IBAction func cancelledSandwichTapped(_ sender: Any) {
+        selectedIndexPaths.forEach { indexPath in
+            let cell = tableView.cellForRow(at: indexPath)
+            cell?.isSelected = false
+            cell?.accessoryType = .none
+        }
+        selectedIndexPaths = []
+        preppedView.isHidden = true
+        tableView.reloadData()
+    }
+
     @IBAction func madeSandwichTapped(_ sender: Any) {
         makeSandwich()
     }
