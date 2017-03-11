@@ -1,4 +1,5 @@
 included:
   - sandwiches
+  - sandwichesTests
 excluded:
   - Pods
