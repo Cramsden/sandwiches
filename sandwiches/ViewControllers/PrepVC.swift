@@ -71,7 +71,7 @@ class PrepVC: UIViewController {
     }
 
     private func resetInventory() {
-        selectedIndexPaths.forEach { selection in
+        selectedIndexPaths.reversed().forEach { selection in
             let foodType = Food.all()[selection.section]
             (parent as? ParentVC)?.sharedItems[foodType]?.remove(at: selection.row)
             self.prepIngredients[foodType]?.remove(at: selection.row)
