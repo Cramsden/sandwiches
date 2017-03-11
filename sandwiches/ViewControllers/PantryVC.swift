@@ -44,6 +44,7 @@ extension PantryVC : UITableViewDataSource {
 
         let ingredientForRow = ingredients[row]
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(ingredientForRow.name)")
+        cell.selectionStyle = .gray
         cell.textLabel?.text = ingredientForRow.name
         cell.detailTextLabel?.text = "Amount: \(ingredientForRow.amount)"
         return cell
