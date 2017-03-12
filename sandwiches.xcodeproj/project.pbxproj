@@ -24,6 +24,8 @@
 		B3CD8D821E74D7BE000E3446 /* PantryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D811E74D7BE000E3446 /* PantryList.swift */; };
 		B3CD8D851E75C9EA000E3446 /* IndexPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D841E75C9EA000E3446 /* IndexPathExtensions.swift */; };
 		B3CD8D881E75CA27000E3446 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D871E75CA27000E3446 /* ArrayExtensions.swift */; };
+		B3CD8D8A1E75D852000E3446 /* SandwichDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D891E75D852000E3446 /* SandwichDetailVC.swift */; };
+		B3CD8D8C1E75DBB9000E3446 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D8B1E75DBB9000E3446 /* IngredientCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		B3CD8D811E74D7BE000E3446 /* PantryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PantryList.swift; path = Helpers/PantryList.swift; sourceTree = "<group>"; };
 		B3CD8D841E75C9EA000E3446 /* IndexPathExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndexPathExtensions.swift; path = Extensions/IndexPathExtensions.swift; sourceTree = "<group>"; };
 		B3CD8D871E75CA27000E3446 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayExtensions.swift; path = Extensions/ArrayExtensions.swift; sourceTree = "<group>"; };
+		B3CD8D891E75D852000E3446 /* SandwichDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichDetailVC.swift; path = ViewControllers/SandwichDetailVC.swift; sourceTree = "<group>"; };
+		B3CD8D8B1E75DBB9000E3446 /* IngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientCell.swift; path = Views/IngredientCell.swift; sourceTree = "<group>"; };
 		C75E5932E3CC600EA162C880 /* Pods-sandwichesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwichesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sandwichesTests/Pods-sandwichesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +165,7 @@
 				B3697BB91DDF6E90002A3EE0 /* Main.storyboard */,
 				B3697BB31DDF6E90002A3EE0 /* AppDelegate.swift */,
 				B3697BBC1DDF6E90002A3EE0 /* Assets.xcassets */,
+				B3CD8D8D1E75DBC8000E3446 /* Views */,
 			);
 			path = sandwiches;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 				B3925BEE1DF1FBCA003C596A /* PrepVC.swift */,
 				B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */,
 				68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */,
+				B3CD8D891E75D852000E3446 /* SandwichDetailVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -200,6 +206,14 @@
 				B3CD8D871E75CA27000E3446 /* ArrayExtensions.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		B3CD8D8D1E75DBC8000E3446 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B3CD8D8B1E75DBB9000E3446 /* IngredientCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		D2E2F0CD68E2AB83C5A03F4C /* Frameworks */ = {
@@ -455,7 +469,9 @@
 				B36E8BA71E63932C00F49C0E /* Sandwich.swift in Sources */,
 				B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */,
 				68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */,
+				B3CD8D8C1E75DBB9000E3446 /* IngredientCell.swift in Sources */,
 				B3CD8D881E75CA27000E3446 /* ArrayExtensions.swift in Sources */,
+				B3CD8D8A1E75D852000E3446 /* SandwichDetailVC.swift in Sources */,
 				B36948461E5A595500FB5148 /* IngredientService.swift in Sources */,
 				B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */,
 				B3CD8D821E74D7BE000E3446 /* PantryList.swift in Sources */,

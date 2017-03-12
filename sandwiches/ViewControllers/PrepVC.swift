@@ -97,7 +97,9 @@ extension PrepVC: UITableViewDelegate {
         return "Toss"
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCellEditingStyle,
+                   forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if prepList.removeIngredientAt(indexPath) {
                 (parent as? ParentVC)?.sharedItems = prepList.getPantry()

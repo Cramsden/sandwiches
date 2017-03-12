@@ -7,11 +7,12 @@ class SandwichVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isTranslucent = true
         tableView.tableFooterView = UIView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if let parent = parent as? ParentVC {
+        if let parent = parent?.parent as? ParentVC {
             sandwiches = parent.sharedSandwiches
             tableView.reloadData()
         }
@@ -64,10 +65,24 @@ extension SandwichVC: UITableViewDelegate {
         return "Eat"
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         performSegue(withIdentifier: "goToSandwich", sender: self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToSandwich",
+            let destination = segue.destination as? SandwichDetailVC,
+            let selectedSandwichRow = tableView.indexPathForSelectedRow?.row {
+            destination.sandwich = sandwiches[selectedSandwichRow]
+        }
+    }
+
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCellEditingStyle,
+                   forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             sandwiches.remove(at: indexPath.row)
-            (parent as? ParentVC)?.sharedSandwiches.remove(at: indexPath.row)
+            (parent?.parent as? ParentVC)?.sharedSandwiches.remove(at: indexPath.row)
 
             sandwiches.count == 0 ?
                 tableView.reloadData()
