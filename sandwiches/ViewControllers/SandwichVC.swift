@@ -68,7 +68,11 @@ extension SandwichVC: UITableViewDelegate {
         if editingStyle == .delete {
             sandwiches.remove(at: indexPath.row)
             (parent as? ParentVC)?.sharedSandwiches.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+
+            sandwiches.count == 0 ?
+                tableView.reloadData()
+                :
+                tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }
