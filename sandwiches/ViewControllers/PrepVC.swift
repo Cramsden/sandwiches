@@ -2,8 +2,7 @@ import UIKit
 
 class PrepVC: UIViewController {
     fileprivate let dateFormatter = DateFormatter()
-    fileprivate var selectedIndexPaths: [IndexPath] = []
-    fileprivate var prepIngredients: Pantry = [:]
+    fileprivate var prepList: PantryList = PantryList(pantryIngredients: [:])
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var preppedView: UIView!
@@ -14,12 +13,7 @@ class PrepVC: UIViewController {
     }
 
     @IBAction func cancelledSandwichTapped(_ sender: Any) {
-        selectedIndexPaths.forEach { indexPath in
-            let cell = tableView.cellForRow(at: indexPath)
-            cell?.isSelected = false
-            cell?.accessoryType = .none
-        }
-        selectedIndexPaths = []
+        prepList.resetSelections()
         preppedView.isHidden = true
         tableView.reloadData()
     }
@@ -36,30 +30,21 @@ class PrepVC: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         if let parent = parent as? ParentVC {
-            prepIngredients = parent.sharedItems
-            selectedIndexPaths = []
+            prepList = PantryList(pantryIngredients: parent.sharedItems)
             preppedView.isHidden = true
             tableView.reloadData()
         }
     }
 
     private func makeSandwich() {
-        var sandwichIngredients: [Ingredient] = []
-
-        selectedIndexPaths.forEach { selection in
-            let foodType = Food.all()[selection.section]
-            if let ingredient = prepIngredients[foodType]?[selection.row] {
-                sandwichIngredients.append(ingredient)
-            }
-        }
+        let sandwichIngredients = prepList.gatherIngredientsForSandwich()
 
         if !sandwichIngredients.isEmpty {
             let sandwich = newSandwichFrom(sandwichIngredients)
             (parent as? ParentVC)?.sharedSandwiches.append(sandwich)
+            (parent as? ParentVC)?.sharedItems = prepList.getPantry()
+            tableView.reloadData()
         }
-
-        resetInventory()
-        tableView.reloadData()
     }
 
     private func newSandwichFrom(_ ingredients: [Ingredient]) -> Sandwich {
@@ -69,19 +54,6 @@ class PrepVC: UIViewController {
             details: ""
         )
     }
-
-    private func resetInventory() {
-        selectedIndexPaths
-            .sorted()
-            .reversed()
-            .forEach { selection in
-            let foodType = Food.all()[selection.section]
-            (parent as? ParentVC)?.sharedItems[foodType]?.remove(at: selection.row)
-            self.prepIngredients[foodType]?.remove(at: selection.row)
-        }
-
-        selectedIndexPaths = []
-    }
 }
 
 extension PrepVC: UITableViewDataSource {
@@ -90,28 +62,20 @@ extension PrepVC: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let food = Food.all()[section]
-        return prepIngredients[food]?.count ?? 0
+        return prepList.numberOfIngredientsInSection(section)
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let food = Food.all()[section]
-        return "\(food.rawValue.uppercased()) - \(prepIngredients[food]?.count ?? 0) ITEMS"
+        return "\(food.rawValue.uppercased()) - \(prepList.numberOfIngredientsInSection(section)) ITEMS"
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
-        let row = indexPath.row
-        let food = Food.all()[section]
-
-        guard let ingredients = prepIngredients[food],
-            ingredients.count > row else { return UITableViewCell() }
-
-        let ingredientForRow = ingredients[row]
+        guard let ingredientForRow = prepList.ingredientFor(indexPath) else { return UITableViewCell() }
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(ingredientForRow.name)")
         cell.textLabel?.text = ingredientForRow.name
         cell.selectionStyle = .none
-        cell.isSelected = selectedIndexPaths.contains(indexPath)
+        cell.isSelected = prepList.ingredientSelectedAt(indexPath)
         cell.accessoryType = cell.isSelected ? .checkmark : .none
         return cell
     }
@@ -119,14 +83,12 @@ extension PrepVC: UITableViewDataSource {
 
 extension PrepVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedIndexPaths.append(indexPath)
+        prepList.selectIngredientAt(indexPath)
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let matchingIndex = selectedIndexPaths.index(of: indexPath) {
-            selectedIndexPaths.remove(at: matchingIndex)
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        }
+        prepList.deselectIngredientAt(indexPath)
+        tableView.cellForRow(at: indexPath)?.accessoryType = .none
     }
 }
