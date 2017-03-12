@@ -29,10 +29,10 @@ class PantryList {
     }
 
     func removeIngredientAt(_ indexPath: IndexPath) -> Bool {
-        guard var ingredients = pantryIngredients[Food.all()[indexPath.section]],
+        deselectIngredientAt(indexPath)
+        guard let ingredients = pantryIngredients[Food.all()[indexPath.section]],
             ingredients.count > indexPath.row else { return false }
-
-        ingredients.remove(at: indexPath.row)
+        pantryIngredients[Food.all()[indexPath.section]]?.remove(at: indexPath.row)
         shiftSelectionsAfter(indexPath)
         return true
     }
@@ -81,9 +81,9 @@ class PantryList {
     }
 
     private func shiftSelectionsAfter(_ indexPath: IndexPath) {
-        selectedIngredientPaths = selectedIngredientPaths.map { selection in
+        selectedIngredientPaths = selectedIngredientPaths.map { selection -> IndexPath in
             if selection.greaterThanInSection(indexPath) {
-                return IndexPath(row: selection.row-1, section: selection.row)
+                return IndexPath(row: selection.row-1, section: selection.section)
             }
 
             return selection
