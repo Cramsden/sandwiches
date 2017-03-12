@@ -22,6 +22,8 @@
 		B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */; };
 		B397B0B11DDF79C10079BF6A /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B397B0B01DDF79C10079BF6A /* Ingredient.swift */; };
 		B3CD8D821E74D7BE000E3446 /* PantryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D811E74D7BE000E3446 /* PantryList.swift */; };
+		B3CD8D851E75C9EA000E3446 /* IndexPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D841E75C9EA000E3446 /* IndexPathExtensions.swift */; };
+		B3CD8D881E75CA27000E3446 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D871E75CA27000E3446 /* ArrayExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichVC.swift; path = ViewControllers/SandwichVC.swift; sourceTree = "<group>"; };
 		B397B0B01DDF79C10079BF6A /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ingredient.swift; path = Models/Ingredient.swift; sourceTree = "<group>"; };
 		B3CD8D811E74D7BE000E3446 /* PantryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PantryList.swift; path = Helpers/PantryList.swift; sourceTree = "<group>"; };
+		B3CD8D841E75C9EA000E3446 /* IndexPathExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndexPathExtensions.swift; path = Extensions/IndexPathExtensions.swift; sourceTree = "<group>"; };
+		B3CD8D871E75CA27000E3446 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayExtensions.swift; path = Extensions/ArrayExtensions.swift; sourceTree = "<group>"; };
 		C75E5932E3CC600EA162C880 /* Pods-sandwichesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwichesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sandwichesTests/Pods-sandwichesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +151,7 @@
 		B3697BB21DDF6E90002A3EE0 /* sandwiches */ = {
 			isa = PBXGroup;
 			children = (
+				B3CD8D861E75C9F2000E3446 /* Extensions */,
 				B3CD8D831E74D7C5000E3446 /* Helpers */,
 				B397B0AF1DDF79880079BF6A /* Models */,
 				B36948421E5A579100FB5148 /* Services */,
@@ -186,6 +191,15 @@
 				B3CD8D811E74D7BE000E3446 /* PantryList.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		B3CD8D861E75C9F2000E3446 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B3CD8D841E75C9EA000E3446 /* IndexPathExtensions.swift */,
+				B3CD8D871E75CA27000E3446 /* ArrayExtensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		D2E2F0CD68E2AB83C5A03F4C /* Frameworks */ = {
@@ -441,10 +455,12 @@
 				B36E8BA71E63932C00F49C0E /* Sandwich.swift in Sources */,
 				B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */,
 				68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */,
+				B3CD8D881E75CA27000E3446 /* ArrayExtensions.swift in Sources */,
 				B36948461E5A595500FB5148 /* IngredientService.swift in Sources */,
 				B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */,
 				B3CD8D821E74D7BE000E3446 /* PantryList.swift in Sources */,
 				B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */,
+				B3CD8D851E75C9EA000E3446 /* IndexPathExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
