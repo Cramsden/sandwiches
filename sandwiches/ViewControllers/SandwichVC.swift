@@ -58,3 +58,17 @@ extension SandwichVC: UITableViewDataSource {
         tableView.backgroundView = noSammiesLabel
     }
 }
+
+extension SandwichVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Eat"
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            sandwiches.remove(at: indexPath.row)
+            (parent as? ParentVC)?.sharedSandwiches.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+}

@@ -1,6 +1,7 @@
 import UIKit
 
 class PrepVC: UIViewController {
+    private let yummy = ["Hearty", "Tasty", "So Good", "Nommable", "Ideal", "Great", "p amzng", "😍", "💣"]
     fileprivate let dateFormatter = DateFormatter()
     fileprivate var prepList: PantryList = PantryList(pantryIngredients: [:])
 
@@ -49,7 +50,7 @@ class PrepVC: UIViewController {
 
     private func newSandwichFrom(_ ingredients: [Ingredient]) -> Sandwich {
         return Sandwich(
-            name: "\(dateFormatter.string(from: Date())) Sandwich",
+            name: "\(dateFormatter.string(from: Date())) \(yummy.rando()) Sandwich",
             ingredients: ingredients,
             details: ""
         )
@@ -90,6 +91,10 @@ extension PrepVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         prepList.deselectIngredientAt(indexPath)
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
+    }
+
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Toss"
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
