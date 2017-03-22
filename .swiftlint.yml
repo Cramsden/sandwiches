@@ -3,3 +3,5 @@ included:
   - sandwichesTests
 excluded:
   - Pods
+disabled_rules:
+  - function_body_length
