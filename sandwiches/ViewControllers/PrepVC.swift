@@ -2,6 +2,7 @@ import UIKit
 
 class PrepVC: UIViewController {
     private let yummy = ["Hearty", "Tasty", "So Good", "Nommable", "Ideal", "Great", "p amzng", "😍", "💣"]
+    private var yesAction: UIAlertAction = UIAlertAction()
     fileprivate let dateFormatter = DateFormatter()
     fileprivate var prepList: PantryList = PantryList(pantryIngredients: [:])
 
@@ -9,8 +10,9 @@ class PrepVC: UIViewController {
     @IBOutlet weak var preppedView: UIView!
 
     @IBAction func sammyTimeTapped(_ sender: Any) {
-        let previously = preppedView.isHidden
-        preppedView.isHidden = previously ? false : true
+        if prepList.getSelectedIngredients().count > 0 || !preppedView.isHidden {
+            preppedView.isHidden = !preppedView.isHidden
+        }
     }
 
     @IBAction func cancelledSandwichTapped(_ sender: Any) {
@@ -20,7 +22,40 @@ class PrepVC: UIViewController {
     }
 
     @IBAction func madeSandwichTapped(_ sender: Any) {
-        makeSandwich()
+        present(buildSandwichForm(), animated: true, completion: nil)
+    }
+
+    private func buildSandwichForm() -> UIAlertController {
+        let alertController = UIAlertController(title: "Make A Sammie?", message: "Tell me a little more about your sammie!", preferredStyle: .alert)
+
+
+        alertController.addTextField  { (textField) -> Void in
+            textField.placeholder = "Sammie Name: Required"
+            textField.addTarget(self, action: #selector(self.textChanged(_:)), for: .editingChanged)
+        }
+
+        alertController.addTextField  { (textField) -> Void in
+            textField.placeholder = "Sammie Description"
+        }
+
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(cancelAction)
+
+        yesAction = UIAlertAction(title: "Yes", style: .default) { action -> Void in
+            let name = alertController.textFields?.first?.text ?? ""
+            let detail = alertController.textFields?.last?.text ?? ""
+            self.makeSandwichFrom(ingredients: self.prepList.gatherIngredientsForSandwich(), withName: name, andDetail: detail)
+        }
+        yesAction.isEnabled = false
+        alertController.addAction(yesAction)
+
+        return alertController
+    }
+
+    @objc private func textChanged(_ sender:UITextField) {
+        yesAction.isEnabled = sender.text != ""
     }
 
     override func viewDidLoad() {
@@ -37,22 +72,20 @@ class PrepVC: UIViewController {
         }
     }
 
-    private func makeSandwich() {
-        let sandwichIngredients = prepList.gatherIngredientsForSandwich()
-
-        if !sandwichIngredients.isEmpty {
-            let sandwich = newSandwichFrom(sandwichIngredients)
+    private func makeSandwichFrom(ingredients: [Ingredient], withName name: String, andDetail detail: String) {
+        if !ingredients.isEmpty {
+            let sandwich = newSandwichFrom(ingredients, withName: name, andDetail: detail)
             (parent as? ParentVC)?.sharedSandwiches.append(sandwich)
             (parent as? ParentVC)?.sharedItems = prepList.getPantry()
             tableView.reloadData()
         }
     }
 
-    private func newSandwichFrom(_ ingredients: [Ingredient]) -> Sandwich {
+    private func newSandwichFrom(_ ingredients: [Ingredient], withName name: String, andDetail detail: String) -> Sandwich {
         return Sandwich(
-            name: "\(dateFormatter.string(from: Date())) \(yummy.rando()) Sandwich",
+            name: "\(dateFormatter.string(from: Date())) \(yummy.rando()) Sandwich: \(name)",
             ingredients: ingredients,
-            details: ""
+            details: detail
         )
     }
 }
@@ -106,5 +139,6 @@ extension PrepVC: UITableViewDelegate {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
+        tableView.reloadSections(IndexSet(indexPath), with: .fade)
     }
 }

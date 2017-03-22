@@ -61,7 +61,7 @@ class PantryList {
             return nil
         }
 
-        removeSelectedIngredients()
+        cleanUpSelectedIngredients()
         resetSelections()
         return sandwichIngredients
     }
@@ -70,7 +70,7 @@ class PantryList {
         selectedIngredientPaths = []
     }
 
-    private func removeSelectedIngredients() {
+    private func cleanUpSelectedIngredients() {
         selectedIngredientPaths
             .sorted()
             .reversed()
