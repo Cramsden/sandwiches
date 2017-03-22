@@ -14,6 +14,7 @@ class SandwichVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if let parent = parent?.parent as? ParentVC {
             sandwiches = parent.sharedSandwiches
+            sandwiches.sort(by: { $0.isFresherThan($1) })
             tableView.reloadData()
         }
     }
