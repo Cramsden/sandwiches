@@ -41,7 +41,19 @@ extension SandwichVC: UITableViewDataSource {
         let sandwichForRow = sandwiches[indexPath.row]
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(sandwichForRow.name)")
         cell.textLabel?.text = sandwichForRow.name
+        cell.textLabel?.textColor = setColorFor(sandwich: sandwichForRow)
         return cell
+    }
+
+    private func setColorFor(sandwich: Sandwich) -> UIColor {
+        guard let freshestIngredient = sandwich.freshestIngredient() else { return UIColor.black }
+        if freshestIngredient.bestBy < Date() {
+            return UIColor.red
+        }
+        if freshestIngredient.bestBy < Date() - 1 {
+            return UIColor.orange
+        }
+        return UIColor.blue
     }
 
     private func addNoSammiesLabel() {
