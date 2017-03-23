@@ -10,11 +10,14 @@ module Sammies
 
     def collection
       number_of_entities.times.collect do
+        start = Faker::Date.backward(5)
+        end_date = Faker::Date.forward(16)
+
         {
           name: Faker::Food.ingredient,
           detail: Faker::Lorem.sentence,
           amount: Faker::Number.between(1, 47),
-          best_by: Faker::Date.forward(17)
+          best_by: Faker::Date.between(start, end_date)
         }
       end
     end
