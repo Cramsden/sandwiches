@@ -11,16 +11,26 @@ struct Sandwich {
         self.details = details
     }
 
-    func freshestIngredient() -> Ingredient? {
+    func isExpired() -> Bool {
+        guard let leastFresh = leastFreshIngredient else { return false }
+        return leastFresh.bestBy < Date()
+    }
+
+    func expiresSoon() -> Bool {
+        guard let leastFresh = leastFreshIngredient else { return false }
+        return leastFresh.bestBy < Date() - 1
+    }
+
+    var leastFreshIngredient: Ingredient? {
         guard let firstIngredient = ingredients.first else { return nil }
-        return ingredients.reduce(firstIngredient) { (ingredient1: Ingredient, ingredient2: Ingredient) -> Ingredient in
-            return ingredient1.bestBy > ingredient2.bestBy ? ingredient1 : ingredient2
+        return ingredients.reduce(firstIngredient) {
+            return $0.bestBy < $1.bestBy ? $0 : $1
         }
     }
 
-    func isFresherThan(_ sandwich: Sandwich) -> Bool {
-        guard let otherFreshestIngredient = sandwich.freshestIngredient(),
-            let freshestIngredient = self.freshestIngredient() else { return false }
-        return freshestIngredient.bestBy > otherFreshestIngredient.bestBy
+    func isNastierThan(_ sandwich: Sandwich) -> Bool {
+        guard let otherLeastFresh = sandwich.leastFreshIngredient,
+            let leastFresh = self.leastFreshIngredient else { return false }
+        return leastFresh.bestBy < otherLeastFresh.bestBy
     }
 }

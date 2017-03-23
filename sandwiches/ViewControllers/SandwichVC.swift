@@ -14,7 +14,7 @@ class SandwichVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         if let parent = parent?.parent as? ParentVC {
             sandwiches = parent.sharedSandwiches
-            sandwiches.sort(by: { $0.isFresherThan($1) })
+            sandwiches.sort(by: { $0.isNastierThan($1) })
             tableView.reloadData()
         }
     }
@@ -46,13 +46,14 @@ extension SandwichVC: UITableViewDataSource {
     }
 
     private func setColorFor(sandwich: Sandwich) -> UIColor {
-        guard let freshestIngredient = sandwich.freshestIngredient() else { return UIColor.black }
-        if freshestIngredient.bestBy < Date() {
+        if sandwich.isExpired() {
             return UIColor.red
         }
-        if freshestIngredient.bestBy < Date() - 1 {
+
+        if sandwich.expiresSoon() {
             return UIColor.orange
         }
+
         return UIColor.blue
     }
 
@@ -74,7 +75,8 @@ extension SandwichVC: UITableViewDataSource {
 }
 
 extension SandwichVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+    func tableView(_ tableView: UITableView,
+                   titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "Eat"
     }
 

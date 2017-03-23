@@ -16,8 +16,8 @@ class PantryList {
         return selectedIngredientPaths
     }
 
-    func numberOfIngredientsInSection(_ number: Int) -> Int {
-        let food = Food.all()[number]
+    func numberOfIngredientsIn(_ section: Int) -> Int {
+        let food = Food.all()[section]
         return pantryIngredients[food]?.count ?? 0
     }
 

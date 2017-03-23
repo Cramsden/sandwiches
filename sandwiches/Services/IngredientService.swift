@@ -6,7 +6,7 @@ class IngredientService {
     private let dateFormatter = DateFormatter()
 
     func getAllIngredients(_ onCompletion: @escaping (Pantry) -> Void) {
-        dateFormatter.dateFormat = "yyyy-mm-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
 
         Alamofire
             .request("http://localhost:8000/ingredients")

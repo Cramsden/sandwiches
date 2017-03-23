@@ -1,8 +1,9 @@
 import UIKit
 
 class PrepVC: UIViewController {
-    private let yummy = ["Hearty", "Tasty", "So Good", "Nommable", "Ideal", "Great", "p amzng", "😍", "💣"]
-    private var yesAction: UIAlertAction = UIAlertAction()
+    private let yummy = ["Hearty", "Tasty", "So Good", "Nommable",
+                         "Ideal", "Great", "p amzng", "😍", "💣"]
+    private var yesAction = UIAlertAction()
     fileprivate let dateFormatter = DateFormatter()
     fileprivate var prepList: PantryList = PantryList(pantryIngredients: [:])
 
@@ -22,40 +23,7 @@ class PrepVC: UIViewController {
     }
 
     @IBAction func madeSandwichTapped(_ sender: Any) {
-        present(buildSandwichForm(), animated: true, completion: nil)
-    }
-
-    private func buildSandwichForm() -> UIAlertController {
-        let alertController = UIAlertController(title: "Make A Sammie?", message: "Tell me a little more about your sammie!", preferredStyle: .alert)
-
-
-        alertController.addTextField  { (textField) -> Void in
-            textField.placeholder = "Sammie Name: Required"
-            textField.addTarget(self, action: #selector(self.textChanged(_:)), for: .editingChanged)
-        }
-
-        alertController.addTextField  { (textField) -> Void in
-            textField.placeholder = "Sammie Description"
-        }
-
-        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-            alertController.dismiss(animated: true, completion: nil)
-        }
-        alertController.addAction(cancelAction)
-
-        yesAction = UIAlertAction(title: "Yes", style: .default) { action -> Void in
-            let name = alertController.textFields?.first?.text ?? ""
-            let detail = alertController.textFields?.last?.text ?? ""
-            self.makeSandwichFrom(ingredients: self.prepList.gatherIngredientsForSandwich(), withName: name, andDetail: detail)
-        }
-        yesAction.isEnabled = false
-        alertController.addAction(yesAction)
-
-        return alertController
-    }
-
-    @objc private func textChanged(_ sender:UITextField) {
-        yesAction.isEnabled = sender.text != ""
+        present(buildSandwichAlert(), animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
@@ -72,7 +40,52 @@ class PrepVC: UIViewController {
         }
     }
 
-    private func makeSandwichFrom(ingredients: [Ingredient], withName name: String, andDetail detail: String) {
+    private func buildSandwichAlert() -> UIAlertController {
+        let alertController = UIAlertController(
+            title: "Make A Sammy?",
+            message: "Tell me a little more about your sammy!",
+            preferredStyle: .alert
+        )
+
+        alertController.addTextField { (textField) -> Void in
+            textField.placeholder = "Sammy Name: Required"
+            textField.addTarget(self, action: #selector(self.textChanged(_:)), for: .editingChanged)
+        }
+
+        alertController.addTextField { (textField) -> Void in
+            textField.placeholder = "Sammie Description"
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(cancelAction)
+
+        yesAction = UIAlertAction(title: "Yes", style: .default) { action -> Void in
+            let name = alertController.textFields?.first?.text ?? ""
+            let detail = alertController.textFields?.last?.text ?? ""
+            self.makeSandwichFrom(
+                ingredients: self.prepList.gatherIngredientsForSandwich(),
+                withName: name,
+                andDetail: detail
+            )
+        }
+
+        yesAction.isEnabled = false
+        alertController.addAction(yesAction)
+
+        return alertController
+    }
+
+    @objc private func textChanged(_ sender: UITextField) {
+        yesAction.isEnabled = sender.text != ""
+    }
+
+    private func makeSandwichFrom(
+        ingredients: [Ingredient],
+        withName name: String,
+        andDetail detail: String
+        ) {
         if !ingredients.isEmpty {
             let sandwich = newSandwichFrom(ingredients, withName: name, andDetail: detail)
             (parent as? ParentVC)?.sharedSandwiches.append(sandwich)
@@ -81,7 +94,11 @@ class PrepVC: UIViewController {
         }
     }
 
-    private func newSandwichFrom(_ ingredients: [Ingredient], withName name: String, andDetail detail: String) -> Sandwich {
+    private func newSandwichFrom(
+        _ ingredients: [Ingredient],
+        withName name: String,
+        andDetail detail: String
+        ) -> Sandwich {
         return Sandwich(
             name: "\(dateFormatter.string(from: Date())) \(yummy.rando()) Sandwich: \(name)",
             ingredients: ingredients,
@@ -96,12 +113,12 @@ extension PrepVC: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return prepList.numberOfIngredientsInSection(section)
+        return prepList.numberOfIngredientsIn(section)
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let food = Food.all()[section]
-        return "\(food.rawValue.uppercased()) - \(prepList.numberOfIngredientsInSection(section)) ITEMS"
+        return "\(food.rawValue.uppercased()) - \(prepList.numberOfIngredientsIn(section)) ITEMS"
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -126,7 +143,8 @@ extension PrepVC: UITableViewDelegate {
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
     }
 
-    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+    func tableView(_ tableView: UITableView,
+                   titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "Toss"
     }
 
