@@ -1,11 +1,19 @@
 import UIKit
 
 class SandwichDetailVC: UIViewController {
-    var sandwich: Sandwich?
     fileprivate let ingredientsPerRow = CGFloat(4)
     fileprivate let insets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+    var sandwich: Sandwich?
 
     @IBOutlet weak var ingredientCollection: UICollectionView!
+
+    @IBAction func eatSammie(_ sender: Any) {
+        if let vc = navigationController?.childViewControllers.first as? SandwichVC,
+            let sandwich = sandwich {
+                vc.sammyToDelete = sandwich
+        }
+        _ = navigationController?.popToRootViewController(animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

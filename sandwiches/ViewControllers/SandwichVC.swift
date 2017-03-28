@@ -2,6 +2,7 @@ import UIKit
 
 class SandwichVC: UIViewController {
     fileprivate var sandwiches: [Sandwich] = []
+    var sammyToDelete: Sandwich?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -12,10 +13,18 @@ class SandwichVC: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if let parent = parent?.parent as? ParentVC {
-            sandwiches = parent.sharedSandwiches
-            sandwiches.sort(by: { $0.isNastierThan($1) })
-            tableView.reloadData()
+        guard let parent = parent?.parent as? ParentVC else { return }
+        removeEatenSammy()
+        sandwiches = parent.sharedSandwiches
+        tableView.reloadData()
+    }
+
+    private func removeEatenSammy() {
+        guard let parent = parent?.parent as? ParentVC else { return }
+        if let eatenSammy = sammyToDelete,
+            let matchingIndex = parent.sharedSandwiches.index(of: eatenSammy) {
+            parent.sharedSandwiches.remove(at: matchingIndex)
+            sammyToDelete = nil
         }
     }
 }

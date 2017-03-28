@@ -34,3 +34,10 @@ struct Sandwich {
         return leastFresh.bestBy < otherLeastFresh.bestBy
     }
 }
+
+extension Sandwich: Equatable {}
+
+func == (lhs: Sandwich, rhs: Sandwich) -> Bool {
+    return lhs.name == rhs.name &&
+    lhs.details == rhs.details
+}

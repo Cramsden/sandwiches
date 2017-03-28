@@ -56,12 +56,12 @@ class PrepVC: UIViewController {
             textField.placeholder = "Sammie Description"
         }
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             alertController.dismiss(animated: true, completion: nil)
         }
         alertController.addAction(cancelAction)
 
-        yesAction = UIAlertAction(title: "Yes", style: .default) { action -> Void in
+        yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
             let name = alertController.textFields?.first?.text ?? ""
             let detail = alertController.textFields?.last?.text ?? ""
             self.makeSandwichFrom(

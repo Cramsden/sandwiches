@@ -6,9 +6,7 @@ import Nimble
 class IngredientSpec: QuickSpec {
     override func spec() {
         describe("Ingredient") {
-
             describe("takesOneForPrep") {
-
                 context("when amount is greater than zero") {
                     it("returns an ingredient with the amount decremented") {
                         var ingredient = Ingredient(
