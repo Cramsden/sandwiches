@@ -2,7 +2,16 @@ import UIKit
 
 class PrepVC: UIViewController {
     private let yummy = ["Hearty", "Tasty", "So Good", "Nommable",
-                         "Ideal", "Great", "p amzng", "😍", "💣"]
+                         "Ideal", "Great", "p amzng", "😍", "💣",
+                         "Saucy", "Dope", "✨", "Special"
+                         ]
+    private let sandwich = ["Hero", "Sandwich", "Sub", "Hoagie",
+                            "Club", "Open-Faced", "Grinder", "Roll",
+                            "Finger Sammy", "Burrito", "Gyro", "Panini",
+                            "Slider", "Burger", "Special", "Footlong",
+                            "Po'boy", "Hot Mess", "Taco", "Wrap", "Bahnmi"
+                            ]
+
     private var yesAction = UIAlertAction()
     fileprivate let dateFormatter = DateFormatter()
     fileprivate var prepList: PantryList = PantryList(pantryIngredients: [:])
@@ -28,7 +37,6 @@ class PrepVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateFormatter.dateFormat = "HH:mm"
         tableView.tableFooterView = UIView()
     }
 
@@ -56,12 +64,17 @@ class PrepVC: UIViewController {
             textField.placeholder = "Sammie Description"
         }
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            alertController.dismiss(animated: true, completion: nil)
+        let surpriseMeAction = UIAlertAction(title: "Surprise Me!", style: .default) { _ in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+            self.makeSandwichFrom(
+                ingredients: self.prepList.gatherIngredientsForSandwich(),
+                withName: "\(dateFormatter.string(from: Date())) \(self.yummy.rando()) \(self.sandwich.rando())"
+            )
         }
-        alertController.addAction(cancelAction)
+        alertController.addAction(surpriseMeAction)
 
-        yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+        yesAction = UIAlertAction(title: "Make it!", style: .default) { _ in
             let name = alertController.textFields?.first?.text ?? ""
             let detail = alertController.textFields?.last?.text ?? ""
             self.makeSandwichFrom(
@@ -84,7 +97,7 @@ class PrepVC: UIViewController {
     private func makeSandwichFrom(
         ingredients: [Ingredient],
         withName name: String,
-        andDetail detail: String
+        andDetail detail: String = ""
         ) {
         if !ingredients.isEmpty {
             let sandwich = newSandwichFrom(ingredients, withName: name, andDetail: detail)
@@ -100,7 +113,7 @@ class PrepVC: UIViewController {
         andDetail detail: String
         ) -> Sandwich {
         return Sandwich(
-            name: "\(dateFormatter.string(from: Date())) \(yummy.rando()) Sandwich: \(name)",
+            name: name,
             ingredients: ingredients,
             details: detail
         )
