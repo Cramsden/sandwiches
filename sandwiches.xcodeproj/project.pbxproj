@@ -289,6 +289,7 @@
 					};
 					B3697BAF1DDF6E90002A3EE0 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = UK6QH85L5Z;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -645,6 +646,7 @@
 			baseConfigurationReference = 5CC4E66C1A4946B9C807CADF /* Pods-sandwiches.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UK6QH85L5Z;
 				INFOPLIST_FILE = sandwiches/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thoughtworks.sandwiches;
@@ -658,6 +660,7 @@
 			baseConfigurationReference = 693BCF5446A664BD37756AFB /* Pods-sandwiches.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = UK6QH85L5Z;
 				INFOPLIST_FILE = sandwiches/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thoughtworks.sandwiches;

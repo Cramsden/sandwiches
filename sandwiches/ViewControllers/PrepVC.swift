@@ -18,12 +18,9 @@ class PrepVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var preppedView: UIView!
-
     @IBOutlet weak var sammyTime: UIButton!
     @IBAction func sammyTimeTapped(_ sender: Any) {
-        if !preppedView.isHidden {
-            preppedView.isHidden = !preppedView.isHidden
-        }
+        preppedView.isHidden = !preppedView.isHidden
     }
 
     @IBAction func cancelledSandwichTapped(_ sender: Any) {
