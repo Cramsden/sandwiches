@@ -16,7 +16,8 @@
 		B3697BBB1DDF6E90002A3EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3697BB91DDF6E90002A3EE0 /* Main.storyboard */; };
 		B3697BBD1DDF6E90002A3EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3697BBC1DDF6E90002A3EE0 /* Assets.xcassets */; };
 		B3697BC01DDF6E90002A3EE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3697BBE1DDF6E90002A3EE0 /* LaunchScreen.storyboard */; };
-		B36E8BA71E63932C00F49C0E /* Sandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36E8BA61E63932C00F49C0E /* Sandwich.swift */; };
+		B37117301E9BEED8003D3484 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B371172F1E9BEED8003D3484 /* IngredientCell.swift */; };
+		B37117321E9BEF1C003D3484 /* Sandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37117311E9BEF1C003D3484 /* Sandwich.swift */; };
 		B3925BF01DF1FBCA003C596A /* PantryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BED1DF1FBCA003C596A /* PantryVC.swift */; };
 		B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEE1DF1FBCA003C596A /* PrepVC.swift */; };
 		B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */; };
@@ -25,7 +26,6 @@
 		B3CD8D851E75C9EA000E3446 /* IndexPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D841E75C9EA000E3446 /* IndexPathExtensions.swift */; };
 		B3CD8D881E75CA27000E3446 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D871E75CA27000E3446 /* ArrayExtensions.swift */; };
 		B3CD8D8A1E75D852000E3446 /* SandwichDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D891E75D852000E3446 /* SandwichDetailVC.swift */; };
-		B3CD8D8C1E75DBB9000E3446 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D8B1E75DBB9000E3446 /* IngredientCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +55,8 @@
 		B3697BBC1DDF6E90002A3EE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3697BBF1DDF6E90002A3EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3697BC11DDF6E90002A3EE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B36E8BA61E63932C00F49C0E /* Sandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sandwich.swift; sourceTree = "<group>"; };
+		B371172F1E9BEED8003D3484 /* IngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientCell.swift; path = Views/IngredientCell.swift; sourceTree = "<group>"; };
+		B37117311E9BEF1C003D3484 /* Sandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sandwich.swift; path = Models/Sandwich.swift; sourceTree = "<group>"; };
 		B3925BED1DF1FBCA003C596A /* PantryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PantryVC.swift; path = ViewControllers/PantryVC.swift; sourceTree = "<group>"; };
 		B3925BEE1DF1FBCA003C596A /* PrepVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepVC.swift; path = ViewControllers/PrepVC.swift; sourceTree = "<group>"; };
 		B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichVC.swift; path = ViewControllers/SandwichVC.swift; sourceTree = "<group>"; };
@@ -64,7 +65,6 @@
 		B3CD8D841E75C9EA000E3446 /* IndexPathExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndexPathExtensions.swift; path = Extensions/IndexPathExtensions.swift; sourceTree = "<group>"; };
 		B3CD8D871E75CA27000E3446 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayExtensions.swift; path = Extensions/ArrayExtensions.swift; sourceTree = "<group>"; };
 		B3CD8D891E75D852000E3446 /* SandwichDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichDetailVC.swift; path = ViewControllers/SandwichDetailVC.swift; sourceTree = "<group>"; };
-		B3CD8D8B1E75DBB9000E3446 /* IngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientCell.swift; path = Views/IngredientCell.swift; sourceTree = "<group>"; };
 		C75E5932E3CC600EA162C880 /* Pods-sandwichesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwichesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sandwichesTests/Pods-sandwichesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,8 +185,8 @@
 		B397B0AF1DDF79880079BF6A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B37117311E9BEF1C003D3484 /* Sandwich.swift */,
 				B397B0B01DDF79C10079BF6A /* Ingredient.swift */,
-				B36E8BA61E63932C00F49C0E /* Sandwich.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 		B3CD8D8D1E75DBC8000E3446 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B3CD8D8B1E75DBB9000E3446 /* IngredientCell.swift */,
+				B371172F1E9BEED8003D3484 /* IngredientCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -467,10 +467,10 @@
 			files = (
 				B3925BF01DF1FBCA003C596A /* PantryVC.swift in Sources */,
 				B397B0B11DDF79C10079BF6A /* Ingredient.swift in Sources */,
-				B36E8BA71E63932C00F49C0E /* Sandwich.swift in Sources */,
 				B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */,
 				68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */,
-				B3CD8D8C1E75DBB9000E3446 /* IngredientCell.swift in Sources */,
+				B37117301E9BEED8003D3484 /* IngredientCell.swift in Sources */,
+				B37117321E9BEF1C003D3484 /* Sandwich.swift in Sources */,
 				B3CD8D881E75CA27000E3446 /* ArrayExtensions.swift in Sources */,
 				B3CD8D8A1E75D852000E3446 /* SandwichDetailVC.swift in Sources */,
 				B36948461E5A595500FB5148 /* IngredientService.swift in Sources */,

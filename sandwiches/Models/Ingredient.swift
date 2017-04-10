@@ -4,6 +4,11 @@ typealias JSONifiable = [String: Any]
 
 enum Food: String {
     case bread, cheese, meat, spread, veggie, dunno
+    
+    static func forSection(_ number: Int) -> Food? {
+        guard all().inRange(number) else { return nil }
+        return all()[number]
+    }
 
     static func all() -> [Food] {
         return [bread, cheese, meat, spread, veggie]

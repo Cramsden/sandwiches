@@ -295,7 +295,7 @@
                                             <constraint firstItem="5Rc-wb-0Ef" firstAttribute="top" secondItem="AUb-fz-Rlc" secondAttribute="top" constant="4" id="kek-r4-kb9"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="nameLabel" destination="5Rc-wb-0Ef" id="l3N-tN-upN"/>
+                                            <outlet property="nameLabel" destination="5Rc-wb-0Ef" id="Pyk-Hn-TlQ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
