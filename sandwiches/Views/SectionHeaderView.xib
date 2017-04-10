@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="SectionHeaderView" id="iN0-l3-epB" customClass="SectionHeaderView" customModule="sandwiches" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="702" height="138"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cRM-OU-7wq">
+                    <rect key="frame" x="0.0" y="0.0" width="702" height="138"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="6dw-Kb-21n">
+                            <rect key="frame" x="24" y="46" width="46" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="6dw-Kb-21n" secondAttribute="height" multiplier="1:1" id="83t-9o-pHe"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8k-4g-o8V">
+                            <rect key="frame" x="330.5" y="59" width="42" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="6dw-Kb-21n" firstAttribute="height" secondItem="cRM-OU-7wq" secondAttribute="height" multiplier="1/3" id="1nO-JG-TRm"/>
+                        <constraint firstItem="Q8k-4g-o8V" firstAttribute="centerX" secondItem="cRM-OU-7wq" secondAttribute="centerX" id="2BA-rJ-xov"/>
+                        <constraint firstItem="6dw-Kb-21n" firstAttribute="leading" secondItem="cRM-OU-7wq" secondAttribute="leading" constant="24" id="Jz7-9C-xLd"/>
+                        <constraint firstItem="Q8k-4g-o8V" firstAttribute="centerY" secondItem="cRM-OU-7wq" secondAttribute="centerY" id="ZW4-Y5-me1"/>
+                        <constraint firstItem="6dw-Kb-21n" firstAttribute="centerY" secondItem="cRM-OU-7wq" secondAttribute="centerY" id="hGE-OR-XxH"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="YqJ-RD-oLv" appends="YES" id="Ilq-7u-cEE"/>
+                    </connections>
+                </view>
+            </subviews>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="cRM-OU-7wq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Iu5-O9-TBG"/>
+                <constraint firstItem="cRM-OU-7wq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="RT5-VG-3CK"/>
+                <constraint firstItem="cRM-OU-7wq" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Vgy-j4-G2n"/>
+                <constraint firstItem="cRM-OU-7wq" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="pou-Mm-mEJ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="arrow" destination="6dw-Kb-21n" id="S4s-LQ-Egq"/>
+                <outlet property="titleLabel" destination="Q8k-4g-o8V" id="kot-Gy-v6A"/>
+            </connections>
+            <point key="canvasLocation" x="-193" y="-123"/>
+        </view>
+        <tapGestureRecognizer id="YqJ-RD-oLv">
+            <connections>
+                <action selector="headerTapped:" destination="iN0-l3-epB" id="uNP-tU-Y6m"/>
+                <outlet property="delegate" destination="iN0-l3-epB" id="Nh2-kA-x0f"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="arrow" width="100" height="100"/>
+    </resources>
+</document>

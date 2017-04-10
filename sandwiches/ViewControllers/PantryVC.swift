@@ -6,13 +6,15 @@ class PantryVC: UIViewController {
     var selectedIngredients: [Ingredient] = []
     var pantry: Pantry = [:]
     var ingredientService = IngredientService()
+    fileprivate var closeSection = [false, false, false, false, false]
 
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         tableView.tableFooterView = UIView()
 
-        ingredientService.getAllIngredients {response in
+        ingredientService.getAllIngredients { response in
             self.pantry = response
             self.tableView.reloadData()
         }
@@ -25,21 +27,34 @@ extension PantryVC : UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let food = Food.all()[section]
+        guard !closeSection[section],
+            let food = Food.forSection(section) else { return 0 }
         return pantry[food]?.count ?? 0
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let food = Food.all()[section]
-        return "\(food.rawValue.uppercased()) - \(pantry[food]?.count ?? 0) ITEMS"
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let food = Food.forSection(section),
+            let header = UINib(nibName: "SectionHeaderView", bundle: nil)
+                .instantiate(withOwner: self, options: nil)
+                .first as? SectionHeaderView
+            else { return nil }
+        header.isOpen = !closeSection[section]
+        header.section = section
+        header.titleLabel.text = "\(food.rawValue.uppercased()) - \(pantry[food]?.count ?? 0) ITEMS"
+        header.delegate = self
+        return header
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
-        let food = Food.all()[section]
 
-        guard let ingredients = pantry[food],
+        guard let food = Food.forSection(section),
+            let ingredients = pantry[food],
             ingredients.count > row else { return UITableViewCell() }
 
         let ingredientForRow = ingredients[row]
@@ -67,5 +82,13 @@ extension PantryVC: UITableViewDelegate {
             }
             tableView.reloadData()
         }
+    }
+}
+
+extension PantryVC: SectionHeaderDelegate {
+    func didTapHeader(in section: Int, shouldClose: Bool) {
+        closeSection[section] = shouldClose
+        let sectionIndexSet = IndexSet(arrayLiteral: section)
+        tableView.reloadSections(sectionIndexSet, with: .automatic)
     }
 }

@@ -59,7 +59,7 @@ class PantryList {
                 let ingredient = pantryIngredients[foodForSection]?[selection.row] {
                 return ingredient
             }
-            
+
             return nil
         }
 
@@ -71,7 +71,7 @@ class PantryList {
     func resetSelections() {
         selectedIngredientPaths = []
     }
-    
+
     private func cleanUpSelectedIngredients() {
         selectedIngredientPaths
             .sorted()

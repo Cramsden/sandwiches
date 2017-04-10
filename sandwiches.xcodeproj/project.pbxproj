@@ -18,6 +18,8 @@
 		B3697BC01DDF6E90002A3EE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3697BBE1DDF6E90002A3EE0 /* LaunchScreen.storyboard */; };
 		B37117301E9BEED8003D3484 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B371172F1E9BEED8003D3484 /* IngredientCell.swift */; };
 		B37117321E9BEF1C003D3484 /* Sandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37117311E9BEF1C003D3484 /* Sandwich.swift */; };
+		B37117351E9C00AA003D3484 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37117331E9C00AA003D3484 /* SectionHeaderView.swift */; };
+		B37117361E9C00AA003D3484 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B37117341E9C00AA003D3484 /* SectionHeaderView.xib */; };
 		B3925BF01DF1FBCA003C596A /* PantryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BED1DF1FBCA003C596A /* PantryVC.swift */; };
 		B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEE1DF1FBCA003C596A /* PrepVC.swift */; };
 		B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */; };
@@ -57,6 +59,8 @@
 		B3697BC11DDF6E90002A3EE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B371172F1E9BEED8003D3484 /* IngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientCell.swift; path = Views/IngredientCell.swift; sourceTree = "<group>"; };
 		B37117311E9BEF1C003D3484 /* Sandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sandwich.swift; path = Models/Sandwich.swift; sourceTree = "<group>"; };
+		B37117331E9C00AA003D3484 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionHeaderView.swift; path = Views/SectionHeaderView.swift; sourceTree = "<group>"; };
+		B37117341E9C00AA003D3484 /* SectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SectionHeaderView.xib; path = Views/SectionHeaderView.xib; sourceTree = "<group>"; };
 		B3925BED1DF1FBCA003C596A /* PantryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PantryVC.swift; path = ViewControllers/PantryVC.swift; sourceTree = "<group>"; };
 		B3925BEE1DF1FBCA003C596A /* PrepVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepVC.swift; path = ViewControllers/PrepVC.swift; sourceTree = "<group>"; };
 		B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichVC.swift; path = ViewControllers/SandwichVC.swift; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 		B3CD8D8D1E75DBC8000E3446 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B37117331E9C00AA003D3484 /* SectionHeaderView.swift */,
+				B37117341E9C00AA003D3484 /* SectionHeaderView.xib */,
 				B371172F1E9BEED8003D3484 /* IngredientCell.swift */,
 			);
 			name = Views;
@@ -328,6 +334,7 @@
 				B3697BC01DDF6E90002A3EE0 /* LaunchScreen.storyboard in Resources */,
 				B3697BBD1DDF6E90002A3EE0 /* Assets.xcassets in Resources */,
 				B3697BBB1DDF6E90002A3EE0 /* Main.storyboard in Resources */,
+				B37117361E9C00AA003D3484 /* SectionHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +483,7 @@
 				B36948461E5A595500FB5148 /* IngredientService.swift in Sources */,
 				B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */,
 				B3CD8D821E74D7BE000E3446 /* PantryList.swift in Sources */,
+				B37117351E9C00AA003D3484 /* SectionHeaderView.swift in Sources */,
 				B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */,
 				B3CD8D851E75C9EA000E3446 /* IndexPathExtensions.swift in Sources */,
 			);
