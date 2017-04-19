@@ -21,6 +21,11 @@ class PantryList {
         return pantryIngredients[foodForSection]?.count ?? 0
     }
 
+    func ingredientsFor(_ section: Int) -> [Ingredient]? {
+        guard let food = Food.forSection(section) else { return nil }
+        return pantryIngredients[food]
+    }
+
     func ingredientFor(_ indexPath: IndexPath) -> Ingredient? {
         guard let ingredients = pantryIngredients[Food.all()[indexPath.section]],
             ingredients.count > indexPath.row else { return nil }

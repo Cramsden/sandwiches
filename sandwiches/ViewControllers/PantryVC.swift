@@ -77,7 +77,7 @@ extension PantryVC: UITableViewDelegate {
             else { return }
 
         if let prepIngredient = self.pantry[selectedFoodType]?[row].takeOneForPrep() {
-            if let _ = parent.sharedItems[selectedFoodType] {
+            if parent.sharedItems[selectedFoodType] != nil {
                 parent.sharedItems[selectedFoodType]!.append(prepIngredient)
             } else {
                 parent.sharedItems[selectedFoodType] = [prepIngredient]

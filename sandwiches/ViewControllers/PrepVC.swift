@@ -15,6 +15,7 @@ class PrepVC: UIViewController {
     private var yesAction = UIAlertAction()
     fileprivate let dateFormatter = DateFormatter()
     fileprivate var prepList: PantryList = PantryList(pantryIngredients: [:])
+    fileprivate var closeSection = [false, false, false, false, false]
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var preppedView: UIView!
@@ -38,6 +39,7 @@ class PrepVC: UIViewController {
         super.viewDidLoad()
         sammyTime.isEnabled = false
         tableView.tableFooterView = UIView()
+        tableView.register(SectionHeaderView.nib, forHeaderFooterViewReuseIdentifier: SectionHeaderView.identifier)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -130,12 +132,26 @@ extension PrepVC: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard !closeSection[section] else { return 0 }
         return prepList.numberOfIngredientsIn(section)
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let food = Food.all()[section]
+        guard let food = Food.forSection(section) else { return "" }
         return "\(food.rawValue.uppercased()) - \(prepList.numberOfIngredientsIn(section)) ITEMS"
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let food = Food.forSection(section),
+            let header = self.tableView.dequeueReusableHeaderFooterView(
+                withIdentifier: SectionHeaderView.identifier)
+                as? SectionHeaderView
+            else { return nil }
+        header.isOpen = !closeSection[section]
+        header.section = section
+        header.titleLabel.text = "\(food.rawValue.uppercased()) - \(prepList.numberOfIngredientsIn(section)) ITEMS"
+        header.delegate = self
+        return header
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -177,5 +193,13 @@ extension PrepVC: UITableViewDelegate {
             }
         }
         tableView.reloadSections(IndexSet(indexPath), with: .fade)
+    }
+}
+
+extension PrepVC: SectionHeaderDelegate {
+    func didTapHeader(in section: Int, shouldClose: Bool) {
+        closeSection[section] = shouldClose
+        let sectionIndexSet = IndexSet(arrayLiteral: section)
+        tableView.reloadSections(sectionIndexSet, with: .automatic)
     }
 }
