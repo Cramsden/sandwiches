@@ -4,10 +4,14 @@ protocol SectionHeaderDelegate: class {
     func didTapHeader(in section: Int, shouldClose: Bool)
 }
 
-class SectionHeaderView: UITableViewHeaderFooterView {
+class SectionHeaderView: UITableViewHeaderFooterView, UIGestureRecognizerDelegate {
+    static let identifier = "SectionHeaderView"
+    static let nib = UINib(nibName: identifier, bundle: nil)
+
     weak var delegate: SectionHeaderDelegate?
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var arrow: UIImageView!
+    @IBOutlet weak var containingView: UIView!
 
     var section: Int?
     var isOpen = true {
@@ -16,9 +20,15 @@ class SectionHeaderView: UITableViewHeaderFooterView {
         }
     }
 
-    @IBAction func headerTapped(_ sender: Any) {
+    override func awakeFromNib() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(headerTapped))
+        tap.delegate = self
+        containingView.addGestureRecognizer(tap)
+    }
+
+    func headerTapped() {
         guard let section = section else { return }
-        self.delegate?.didTapHeader(in: section, shouldClose: isOpen)
+        delegate?.didTapHeader(in: section, shouldClose: isOpen)
         isOpen = !isOpen
     }
 

@@ -42,9 +42,6 @@
                         <constraint firstItem="Q8k-4g-o8V" firstAttribute="centerY" secondItem="cRM-OU-7wq" secondAttribute="centerY" id="ZW4-Y5-me1"/>
                         <constraint firstItem="6dw-Kb-21n" firstAttribute="centerY" secondItem="cRM-OU-7wq" secondAttribute="centerY" id="hGE-OR-XxH"/>
                     </constraints>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="YqJ-RD-oLv" appends="YES" id="Ilq-7u-cEE"/>
-                    </connections>
                 </view>
             </subviews>
             <gestureRecognizers/>
@@ -58,16 +55,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="arrow" destination="6dw-Kb-21n" id="S4s-LQ-Egq"/>
+                <outlet property="containingView" destination="cRM-OU-7wq" id="2BV-Ll-y2h"/>
                 <outlet property="titleLabel" destination="Q8k-4g-o8V" id="kot-Gy-v6A"/>
             </connections>
             <point key="canvasLocation" x="-193" y="-123"/>
         </view>
-        <tapGestureRecognizer id="YqJ-RD-oLv">
-            <connections>
-                <action selector="headerTapped:" destination="iN0-l3-epB" id="uNP-tU-Y6m"/>
-                <outlet property="delegate" destination="iN0-l3-epB" id="Nh2-kA-x0f"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="arrow" width="100" height="100"/>

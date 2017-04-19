@@ -12,6 +12,8 @@ class PantryVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.register(SectionHeaderView.nib, forHeaderFooterViewReuseIdentifier: SectionHeaderView.identifier)
         tableView.tableFooterView = UIView()
 
         ingredientService.getAllIngredients { response in
@@ -38,9 +40,9 @@ extension PantryVC : UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let food = Food.forSection(section),
-            let header = UINib(nibName: "SectionHeaderView", bundle: nil)
-                .instantiate(withOwner: self, options: nil)
-                .first as? SectionHeaderView
+            let header = self.tableView.dequeueReusableHeaderFooterView(
+                withIdentifier: SectionHeaderView.identifier)
+                as? SectionHeaderView
             else { return nil }
         header.isOpen = !closeSection[section]
         header.section = section
