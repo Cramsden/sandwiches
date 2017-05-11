@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		23FA5051A3C70EE37D34D57E /* Pods_sandwiches.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B7E1E8D64F226140B4B5A3 /* Pods_sandwiches.framework */; };
+		687C632D1EC3F77A008A574C /* PantryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687C632C1EC3F77A008A574C /* PantryViewModel.swift */; };
 		68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */; };
 		B36948461E5A595500FB5148 /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36948451E5A595500FB5148 /* IngredientService.swift */; };
 		B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3697BB31DDF6E90002A3EE0 /* AppDelegate.swift */; };
@@ -32,6 +33,7 @@
 		14CF8EC3FCEDAC86413C6F6A /* Pods-sandwichesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwichesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sandwichesTests/Pods-sandwichesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		28E36171B67686AB94A356A4 /* Pods_sandwichesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sandwichesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CC4E66C1A4946B9C807CADF /* Pods-sandwiches.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwiches.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches.debug.xcconfig"; sourceTree = "<group>"; };
+		687C632C1EC3F77A008A574C /* PantryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PantryViewModel.swift; path = ViewModels/PantryViewModel.swift; sourceTree = "<group>"; };
 		68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentVC.swift; path = ViewControllers/ParentVC.swift; sourceTree = "<group>"; };
 		693BCF5446A664BD37756AFB /* Pods-sandwiches.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwiches.release.xcconfig"; path = "Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches.release.xcconfig"; sourceTree = "<group>"; };
 		98B7E1E8D64F226140B4B5A3 /* Pods_sandwiches.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sandwiches.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		687C632B1EC3F73B008A574C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				687C632C1EC3F77A008A574C /* PantryViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
 		B36948421E5A579100FB5148 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +119,7 @@
 		B3697BB21DDF6E90002A3EE0 /* sandwiches */ = {
 			isa = PBXGroup;
 			children = (
+				687C632B1EC3F73B008A574C /* ViewModels */,
 				B3CD8D861E75C9F2000E3446 /* Extensions */,
 				B3CD8D831E74D7C5000E3446 /* Helpers */,
 				B397B0AF1DDF79880079BF6A /* Models */,
@@ -330,6 +341,7 @@
 				B3CD8D8A1E75D852000E3446 /* SandwichDetailVC.swift in Sources */,
 				B36948461E5A595500FB5148 /* IngredientService.swift in Sources */,
 				B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */,
+				687C632D1EC3F77A008A574C /* PantryViewModel.swift in Sources */,
 				B3CD8D821E74D7BE000E3446 /* PantryList.swift in Sources */,
 				B37117351E9C00AA003D3484 /* SectionHeaderView.swift in Sources */,
 				B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */,

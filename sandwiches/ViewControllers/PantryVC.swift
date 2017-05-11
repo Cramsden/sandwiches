@@ -3,9 +3,8 @@ import UIKit
 typealias Pantry = [Food: [Ingredient]]
 
 class PantryVC: UIViewController {
-    var selectedIngredients: [Ingredient] = []
-    var pantry: Pantry = [:]
     var ingredientService = IngredientService()
+    var pantryVM: PantryViewModel?
     fileprivate var closeSection = [false, false, false, false, false]
 
     @IBOutlet weak var tableView: UITableView!
@@ -17,7 +16,7 @@ class PantryVC: UIViewController {
         tableView.tableFooterView = UIView()
 
         ingredientService.getAllIngredients { response in
-            self.pantry = response
+            self.pantryVM = PantryViewModel(pantry: response)
             self.tableView.reloadData()
         }
     }
@@ -25,13 +24,11 @@ class PantryVC: UIViewController {
 
 extension PantryVC : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Food.all().count
+        return pantryVM?.numberOfTypesOfFood ?? 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard !closeSection[section],
-            let food = Food.forSection(section) else { return 0 }
-        return pantry[food]?.count ?? 0
+        return pantryVM?.numberOfItemsIn(section) ?? 0
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -46,7 +43,7 @@ extension PantryVC : UITableViewDataSource {
             else { return nil }
         header.isOpen = !closeSection[section]
         header.section = section
-        header.titleLabel.text = "\(food.rawValue.uppercased()) - \(pantry[food]?.count ?? 0) ITEMS"
+        header.titleLabel.text = "\(food.rawValue.uppercased()) - \(pantryVM?.pantry[food]?.count ?? 0) ITEMS"
         header.delegate = self
         return header
     }
@@ -56,7 +53,7 @@ extension PantryVC : UITableViewDataSource {
         let row = indexPath.row
 
         guard let food = Food.forSection(section),
-            let ingredients = pantry[food],
+            let ingredients = pantryVM?.pantry[food],
             ingredients.count > row else { return UITableViewCell() }
 
         let ingredientForRow = ingredients[row]
@@ -76,7 +73,7 @@ extension PantryVC: UITableViewDelegate {
         guard let parent = parent as? ParentVC
             else { return }
 
-        if let prepIngredient = self.pantry[selectedFoodType]?[row].takeOneForPrep() {
+        if let prepIngredient = pantryVM?.pantry[selectedFoodType]?[row].takeOneForPrep() {
             if parent.sharedItems[selectedFoodType] != nil {
                 parent.sharedItems[selectedFoodType]!.append(prepIngredient)
             } else {
