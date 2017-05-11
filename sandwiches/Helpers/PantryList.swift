@@ -35,7 +35,7 @@ class PantryList {
 
     func removeIngredientAt(_ indexPath: IndexPath) -> Bool {
         deselectIngredientAt(indexPath)
-        guard  let foodForSection = Food.forSection(indexPath.section),
+        guard let foodForSection = Food.forSection(indexPath.section),
             let ingredients = pantryIngredients[foodForSection],
             ingredients.count > indexPath.row else { return false }
 

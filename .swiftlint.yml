@@ -5,3 +5,6 @@ excluded:
   - Pods
 disabled_rules:
   - function_body_length
+  - conditional_binding_cascade
+
+line_length: 150
