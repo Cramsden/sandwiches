@@ -49,31 +49,24 @@ extension PantryVC : UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
-        let row = indexPath.row
-
-        guard let food = Food.forSection(section),
-            let ingredients = pantryVM?.pantry[food],
-            ingredients.count > row else { return UITableViewCell() }
-
-        let ingredientForRow = ingredients[row]
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(ingredientForRow.name)")
+        guard let ingredient = pantryVM?.ingredientAt(indexPath.row, andSection: indexPath.section) else {
+            return UITableViewCell()
+        }
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(ingredient.name)")
         cell.selectionStyle = .gray
-        cell.textLabel?.text = ingredientForRow.name
-        cell.detailTextLabel?.text = "Amount: \(ingredientForRow.amount)"
+        cell.textLabel?.text = ingredient.name
+        cell.detailTextLabel?.text = "Amount: \(ingredient.amount)"
         return cell
     }
 }
 
 extension PantryVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = indexPath.section
-        let row = indexPath.row
-        let selectedFoodType = Food.all()[section]
+        let selectedFoodType = Food.all()[indexPath.section]
         guard let parent = parent as? ParentVC
             else { return }
 
-        if let prepIngredient = pantryVM?.pantry[selectedFoodType]?[row].takeOneForPrep() {
+        if let prepIngredient = pantryVM?.nabIngredientAt(indexPath.row, andSection: indexPath.section) {
             if parent.sharedItems[selectedFoodType] != nil {
                 parent.sharedItems[selectedFoodType]!.append(prepIngredient)
             } else {
