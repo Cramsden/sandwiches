@@ -5,7 +5,6 @@ typealias Pantry = [Food: [Ingredient]]
 class PantryVC: UIViewController {
     var ingredientService = IngredientService()
     var pantryVM: PantryViewModel?
-    fileprivate var closeSection = [false, false, false, false, false]
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -28,7 +27,7 @@ extension PantryVC : UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pantryVM?.numberOfItemsIn(section) ?? 0
+        return pantryVM?.visableRowsIn(section) ?? 0
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -41,9 +40,9 @@ extension PantryVC : UITableViewDataSource {
                 withIdentifier: SectionHeaderView.identifier)
                 as? SectionHeaderView
             else { return nil }
-        header.isOpen = !closeSection[section]
+        header.isOpen = pantryVM?.isOpenAt(section) ?? false
         header.section = section
-        header.titleLabel.text = "\(food.rawValue.uppercased()) - \(pantryVM?.pantry[food]?.count ?? 0) ITEMS"
+        header.titleLabel.text = "\(food.rawValue.uppercased()) - \(pantryVM?.numberOfItemsIn(section) ?? 0) ITEMS"
         header.delegate = self
         return header
     }
@@ -79,7 +78,7 @@ extension PantryVC: UITableViewDelegate {
 
 extension PantryVC: SectionHeaderDelegate {
     func didTapHeader(in section: Int, shouldClose: Bool) {
-        closeSection[section] = shouldClose
+        pantryVM?.toggleAtSection(section)
         let sectionIndexSet = IndexSet(arrayLiteral: section)
         tableView.reloadSections(sectionIndexSet, with: .automatic)
     }

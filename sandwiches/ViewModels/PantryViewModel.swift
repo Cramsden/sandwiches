@@ -16,8 +16,15 @@ struct PantryViewModel {
 
     func numberOfItemsIn(_ section: Int) -> Int {
         guard section < sectionVMs.count else { return 0 }
-
         return sectionVMs[section].numberOfItems()
+    }
+
+    func visableRowsIn(_ section: Int) -> Int {
+        guard section < sectionVMs.count,
+            sectionVMs[section].isOpen
+            else { return 0 }
+
+        return numberOfItemsIn(section)
     }
 
     func ingredientAt(_ row: Int, andSection section: Int) -> Ingredient? {
@@ -29,11 +36,19 @@ struct PantryViewModel {
         guard section < sectionVMs.count else { return nil }
         return sectionVMs[section].nabIngredientAt(row: row)
     }
+
+    func isOpenAt(_ section: Int) -> Bool {
+        return sectionVMs[section].isOpen
+    }
+
+    func toggleAtSection(_ section: Int) {
+        sectionVMs[section].toggle()
+    }
 }
 
 class SectionViewModel {
     var items: [Ingredient]
-    private var isOpen = true
+    private (set) var isOpen = true
 
     init(items: [Ingredient]) {
         self.items = items
@@ -44,7 +59,7 @@ class SectionViewModel {
     }
 
     func numberOfItems() -> Int {
-        return isOpen ? items.count : 0
+        return items.count
     }
 
     func nabIngredientAt(row index: Int) -> Ingredient? {
