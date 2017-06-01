@@ -14,9 +14,8 @@ struct PantryViewModel {
         return Food.all().count
     }
 
-    func numberOfItemsIn(_ section: Int) -> Int {
-        guard section < sectionVMs.count else { return 0 }
-        return sectionVMs[section].numberOfItems()
+    func sectionHeaderLabel(for food: Food, in section: Int) -> String {
+        return "\(food.rawValue.uppercased()) - \(numberOfItemsIn(section)) ITEMS"
     }
 
     func visableRowsIn(_ section: Int) -> Int {
@@ -43,6 +42,11 @@ struct PantryViewModel {
 
     func toggleAtSection(_ section: Int) {
         sectionVMs[section].toggle()
+    }
+
+    private func numberOfItemsIn(_ section: Int) -> Int {
+        guard section < sectionVMs.count else { return 0 }
+        return sectionVMs[section].numberOfItems()
     }
 }
 

@@ -42,7 +42,7 @@ extension PantryVC : UITableViewDataSource {
             else { return nil }
         header.isOpen = pantryVM?.isOpenAt(section) ?? false
         header.section = section
-        header.titleLabel.text = "\(food.rawValue.uppercased()) - \(pantryVM?.numberOfItemsIn(section) ?? 0) ITEMS"
+        header.titleLabel.text = pantryVM?.sectionHeaderLabel(for: food, in: section)
         header.delegate = self
         return header
     }
@@ -71,6 +71,7 @@ extension PantryVC: UITableViewDelegate {
             } else {
                 parent.sharedItems[selectedFoodType] = [prepIngredient]
             }
+
             tableView.reloadData()
         }
     }
@@ -79,7 +80,6 @@ extension PantryVC: UITableViewDelegate {
 extension PantryVC: SectionHeaderDelegate {
     func didTapHeader(in section: Int, shouldClose: Bool) {
         pantryVM?.toggleAtSection(section)
-        let sectionIndexSet = IndexSet(arrayLiteral: section)
-        tableView.reloadSections(sectionIndexSet, with: .automatic)
+        tableView.reloadSections(IndexSet(arrayLiteral: section), with: .automatic)
     }
 }
