@@ -4,7 +4,7 @@ typealias Pantry = [Food: [Ingredient]]
 
 class PantryVC: UIViewController {
     var ingredientService = IngredientService()
-    var pantryVM: PantryViewModel?
+    var pantryVM: PantryViewModel = PantryViewModel(pantry: [:])
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -23,11 +23,11 @@ class PantryVC: UIViewController {
 
 extension PantryVC : UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return pantryVM?.numberOfTypesOfFood ?? 0
+        return pantryVM.numberOfTypesOfFood
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pantryVM?.visableRowsIn(section) ?? 0
+        return pantryVM.visableRowsIn(section)
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -40,15 +40,15 @@ extension PantryVC : UITableViewDataSource {
                 withIdentifier: SectionHeaderView.identifier)
                 as? SectionHeaderView
             else { return nil }
-        header.isOpen = pantryVM?.isOpenAt(section) ?? false
+        header.isOpen = pantryVM.isOpenAt(section)
         header.section = section
-        header.titleLabel.text = pantryVM?.sectionHeaderLabel(for: food, in: section)
+        header.titleLabel.text = pantryVM.sectionHeaderLabel(for: food, in: section)
         header.delegate = self
         return header
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let ingredient = pantryVM?.ingredientAt(indexPath.row, andSection: indexPath.section) else {
+        guard let ingredient = pantryVM.ingredientAt(indexPath.row, andSection: indexPath.section) else {
             return UITableViewCell()
         }
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(ingredient.name)")
@@ -65,7 +65,7 @@ extension PantryVC: UITableViewDelegate {
         guard let parent = parent as? ParentVC
             else { return }
 
-        if let prepIngredient = pantryVM?.nabIngredientAt(indexPath.row, andSection: indexPath.section) {
+        if let prepIngredient = pantryVM.nabIngredientAt(indexPath.row, andSection: indexPath.section) {
             if parent.sharedItems[selectedFoodType] != nil {
                 parent.sharedItems[selectedFoodType]!.append(prepIngredient)
             } else {
@@ -79,7 +79,7 @@ extension PantryVC: UITableViewDelegate {
 
 extension PantryVC: SectionHeaderDelegate {
     func didTapHeader(in section: Int, shouldClose: Bool) {
-        pantryVM?.toggleAtSection(section)
+        pantryVM.toggleAtSection(section)
         tableView.reloadSections(IndexSet(arrayLiteral: section), with: .automatic)
     }
 }
