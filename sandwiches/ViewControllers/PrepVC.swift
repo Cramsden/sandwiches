@@ -14,8 +14,7 @@ class PrepVC: UIViewController {
 
     private var yesAction = UIAlertAction()
     fileprivate let dateFormatter = DateFormatter()
-    fileprivate var prepList: PantryList = PantryList(pantryIngredients: [:])
-    fileprivate var closeSection = [false, false, false, false, false]
+    fileprivate var prepVM = PrepViewModel(pantry: [:])
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var preppedView: UIView!
@@ -25,7 +24,7 @@ class PrepVC: UIViewController {
     }
 
     @IBAction func cancelledSandwichTapped(_ sender: Any) {
-        prepList.resetSelections()
+        prepVM.resetSelections()
         sammyTime.isEnabled = false
         preppedView.isHidden = true
         tableView.reloadData()
@@ -44,7 +43,7 @@ class PrepVC: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         if let parent = parent as? ParentVC {
-            prepList = PantryList(pantryIngredients: parent.sharedItems)
+            prepVM = PrepViewModel(pantry: parent.sharedItems)
             preppedView.isHidden = true
             tableView.reloadData()
         }
@@ -70,7 +69,7 @@ class PrepVC: UIViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm"
             self.makeSandwichFrom(
-                ingredients: self.prepList.gatherIngredientsForSandwich(),
+                ingredients: self.prepVM.gatherIngredientsForSandwich(),
                 withName: "\(dateFormatter.string(from: Date())) \(self.yummy.rando()) \(self.sandwich.rando())"
             )
             self.sammyTime.isEnabled = false
@@ -82,7 +81,7 @@ class PrepVC: UIViewController {
             let name = alertController.textFields?.first?.text ?? ""
             let detail = alertController.textFields?.last?.text ?? ""
             self.makeSandwichFrom(
-                ingredients: self.prepList.gatherIngredientsForSandwich(),
+                ingredients: self.prepVM.gatherIngredientsForSandwich(),
                 withName: name,
                 andDetail: detail
             )
@@ -105,10 +104,11 @@ class PrepVC: UIViewController {
         withName name: String,
         andDetail detail: String = ""
         ) {
+
         if !ingredients.isEmpty {
             let sandwich = newSandwichFrom(ingredients, withName: name, andDetail: detail)
             (parent as? ParentVC)?.sharedSandwiches.append(sandwich)
-            (parent as? ParentVC)?.sharedItems = prepList.getPantry()
+            (parent as? ParentVC)?.sharedItems = prepVM.tldr
             tableView.reloadData()
         }
     }
@@ -128,17 +128,15 @@ class PrepVC: UIViewController {
 
 extension PrepVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Food.all().count
+        return prepVM.numberOfTypesOfFood
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard !closeSection[section] else { return 0 }
-        return prepList.numberOfIngredientsIn(section)
+        return prepVM.visableRowsIn(section)
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let food = Food.forSection(section) else { return "" }
-        return "\(food.rawValue.uppercased()) - \(prepList.numberOfIngredientsIn(section)) ITEMS"
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -147,19 +145,19 @@ extension PrepVC: UITableViewDataSource {
                 withIdentifier: SectionHeaderView.identifier)
                 as? SectionHeaderView
             else { return nil }
-        header.isOpen = !closeSection[section]
+        header.isOpen = prepVM.isOpenAt(section)
         header.section = section
-        header.titleLabel.text = "\(food.rawValue.uppercased()) - \(prepList.numberOfIngredientsIn(section)) ITEMS"
+        header.titleLabel.text = prepVM.sectionHeaderLabel(for: food, in: section)
         header.delegate = self
         return header
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let ingredientForRow = prepList.ingredientFor(indexPath) else { return UITableViewCell() }
+        guard let ingredientForRow = prepVM.ingredientAt(indexPath.row, andSection: indexPath.section) else { return UITableViewCell() }
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(ingredientForRow.name)")
         cell.textLabel?.text = ingredientForRow.name
         cell.selectionStyle = .none
-        cell.isSelected = prepList.ingredientSelectedAt(indexPath)
+        cell.isSelected = prepVM.ingredientSelectedAt(indexPath)
         cell.accessoryType = cell.isSelected ? .checkmark : .none
         return cell
     }
@@ -167,15 +165,15 @@ extension PrepVC: UITableViewDataSource {
 
 extension PrepVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        prepList.selectIngredientAt(indexPath)
+        prepVM.selectIngredientAt(indexPath)
         sammyTime.isEnabled = true
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        prepList.deselectIngredientAt(indexPath)
+        prepVM.deselectIngredientAt(indexPath)
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        if prepList.getSelectedIngredients().isEmpty { sammyTime.isEnabled = false }
+        if prepVM.getSelectedIngredients().isEmpty { sammyTime.isEnabled = false }
     }
 
     func tableView(_ tableView: UITableView,
@@ -187,8 +185,8 @@ extension PrepVC: UITableViewDelegate {
                    commit editingStyle: UITableViewCellEditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if prepList.removeIngredientAt(indexPath) {
-                (parent as? ParentVC)?.sharedItems = prepList.getPantry()
+            if prepVM.removeIngredientAt(indexPath) {
+                (parent as? ParentVC)?.sharedItems = prepVM.tldr
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
@@ -198,8 +196,7 @@ extension PrepVC: UITableViewDelegate {
 
 extension PrepVC: SectionHeaderDelegate {
     func didTapHeader(in section: Int, shouldClose: Bool) {
-        closeSection[section] = shouldClose
-        let sectionIndexSet = IndexSet(arrayLiteral: section)
-        tableView.reloadSections(sectionIndexSet, with: .automatic)
+        prepVM.toggleAtSection(section)
+        tableView.reloadSections(IndexSet(arrayLiteral: section), with: .automatic)
     }
 }

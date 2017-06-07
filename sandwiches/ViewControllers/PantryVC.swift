@@ -3,8 +3,8 @@ import UIKit
 typealias Pantry = [Food: [Ingredient]]
 
 class PantryVC: UIViewController {
-    var ingredientService = IngredientService()
-    var pantryVM: PantryViewModel = PantryViewModel(pantry: [:])
+    private var ingredientService = IngredientService()
+    fileprivate var pantryVM: PantryViewModel = PantryViewModel(pantry: [:])
 
     @IBOutlet weak var tableView: UITableView!
 

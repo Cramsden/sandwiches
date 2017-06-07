@@ -1,6 +1,9 @@
 struct PantryViewModel {
     var pantry: Pantry
     var sectionVMs: [SectionViewModel]
+    var numberOfTypesOfFood: Int {
+        return Food.all().count
+    }
 
     init(pantry: Pantry) {
         self.pantry = pantry
@@ -8,10 +11,6 @@ struct PantryViewModel {
             let itemsForFood = pantry[food] ?? []
             return SectionViewModel(items: itemsForFood)
         }
-    }
-
-    var numberOfTypesOfFood: Int {
-        return Food.all().count
     }
 
     func sectionHeaderLabel(for food: Food, in section: Int) -> String {
@@ -64,6 +63,10 @@ class SectionViewModel {
 
     func numberOfItems() -> Int {
         return items.count
+    }
+
+    func removeIngredientAt(row index: Int) {
+        items.remove(at: index)
     }
 
     func nabIngredientAt(row index: Int) -> Ingredient? {

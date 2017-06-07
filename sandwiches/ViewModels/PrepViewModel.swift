@@ -1,45 +1,71 @@
 import Foundation
 
-class PantryList {
-    private var pantryIngredients: Pantry
+class PrepViewModel {
+    var pantry: Pantry
     private var selectedIngredientPaths: [IndexPath] = []
-
-    init(pantryIngredients: Pantry) {
-        self.pantryIngredients = pantryIngredients
+    var sectionVMs: [SectionViewModel]
+    var numberOfTypesOfFood: Int {
+        return Food.all().count
     }
 
-    func getPantry() -> Pantry {
-        return pantryIngredients
+    init(pantry: Pantry) {
+        self.pantry = pantry
+        self.sectionVMs = Food.all().map { food in
+            let itemsForFood = pantry[food] ?? []
+            return SectionViewModel(items: itemsForFood)
+        }
+    }
+
+    var tldr: Pantry {
+        var current: Pantry = [:]
+        Food.all().enumerated().forEach { (index, food) in
+            current[food] = sectionVMs[index].items
+        }
+        return current
+    }
+
+    func sectionHeaderLabel(for food: Food, in section: Int) -> String {
+        return "\(food.rawValue.uppercased()) - \(numberOfItemsIn(section)) ITEMS"
+    }
+
+    func visableRowsIn(_ section: Int) -> Int {
+        guard section < sectionVMs.count,
+            sectionVMs[section].isOpen
+            else { return 0 }
+
+        return numberOfItemsIn(section)
+    }
+
+    private func numberOfItemsIn(_ section: Int) -> Int {
+        guard section < sectionVMs.count else { return 0 }
+        return sectionVMs[section].numberOfItems()
     }
 
     func getSelectedIngredients() -> [IndexPath] {
         return selectedIngredientPaths
     }
 
-    func numberOfIngredientsIn(_ section: Int) -> Int {
-        guard let foodForSection = Food.forSection(section) else { return 0 }
-        return pantryIngredients[foodForSection]?.count ?? 0
+    func isOpenAt(_ section: Int) -> Bool {
+        return sectionVMs[section].isOpen
+    }
+
+    func toggleAtSection(_ section: Int) {
+        sectionVMs[section].toggle()
     }
 
     func ingredientsFor(_ section: Int) -> [Ingredient]? {
         guard let food = Food.forSection(section) else { return nil }
-        return pantryIngredients[food]
+        return pantry[food]
     }
 
-    func ingredientFor(_ indexPath: IndexPath) -> Ingredient? {
-        guard let ingredients = pantryIngredients[Food.all()[indexPath.section]],
-            ingredients.count > indexPath.row else { return nil }
-
-        return ingredients[indexPath.row]
+    func ingredientAt(_ row: Int, andSection section: Int) -> Ingredient? {
+        guard section < sectionVMs.count else { return nil }
+        return sectionVMs[section].ingredientAt(row: row)
     }
 
     func removeIngredientAt(_ indexPath: IndexPath) -> Bool {
         deselectIngredientAt(indexPath)
-        guard let foodForSection = Food.forSection(indexPath.section),
-            let ingredients = pantryIngredients[foodForSection],
-            ingredients.count > indexPath.row else { return false }
-
-        pantryIngredients[foodForSection]?.remove(at: indexPath.row)
+        sectionVMs[indexPath.section].removeIngredientAt(row: indexPath.row)
         shiftSelectionsAfter(indexPath)
         return true
     }
@@ -60,8 +86,7 @@ class PantryList {
 
     func gatherIngredientsForSandwich() -> [Ingredient] {
         let sandwichIngredients: [Ingredient] = selectedIngredientPaths.flatMap { selection in
-            if let foodForSection = Food.forSection(selection.section),
-                let ingredient = pantryIngredients[foodForSection]?[selection.row] {
+            if let ingredient = sectionVMs[selection.section].ingredientAt(row: selection.row) {
                 return ingredient
             }
 
@@ -69,7 +94,6 @@ class PantryList {
         }
 
         cleanUpSelectedIngredients()
-        resetSelections()
         return sandwichIngredients
     }
 
@@ -82,9 +106,7 @@ class PantryList {
             .sorted()
             .reversed()
             .forEach { selection in
-                if let foodForSection = Food.forSection(selection.section) {
-                    self.pantryIngredients[foodForSection]?.remove(at: selection.row)
-                }
+                _ = removeIngredientAt(selection)
         }
     }
 
