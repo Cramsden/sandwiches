@@ -147,7 +147,7 @@ extension PrepVC: UITableViewDataSource {
             else { return nil }
         header.isOpen = prepVM.isOpenAt(section)
         header.section = section
-        header.titleLabel.text = prepVM.sectionHeaderLabel(for: food, in: section)
+        header.titleLabel.text = prepVM.sectionHeaderTitle(for: food, in: section)
         header.delegate = self
         return header
     }
@@ -173,7 +173,7 @@ extension PrepVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         prepVM.deselectIngredientAt(indexPath)
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        if prepVM.getSelectedIngredients().isEmpty { sammyTime.isEnabled = false }
+        if prepVM.selectedIngredientPaths.isEmpty { sammyTime.isEnabled = false }
     }
 
     func tableView(_ tableView: UITableView,

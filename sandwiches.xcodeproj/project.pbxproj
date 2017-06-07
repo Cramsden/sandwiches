@@ -20,6 +20,7 @@
 		B37117321E9BEF1C003D3484 /* Sandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37117311E9BEF1C003D3484 /* Sandwich.swift */; };
 		B37117351E9C00AA003D3484 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37117331E9C00AA003D3484 /* SectionHeaderView.swift */; };
 		B37117361E9C00AA003D3484 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B37117341E9C00AA003D3484 /* SectionHeaderView.xib */; };
+		B379A24B1EE8400400CB8127 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B379A24A1EE8400400CB8127 /* ViewModel.swift */; };
 		B3925BF01DF1FBCA003C596A /* PantryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BED1DF1FBCA003C596A /* PantryVC.swift */; };
 		B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEE1DF1FBCA003C596A /* PrepVC.swift */; };
 		B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */; };
@@ -49,6 +50,7 @@
 		B37117311E9BEF1C003D3484 /* Sandwich.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sandwich.swift; path = Models/Sandwich.swift; sourceTree = "<group>"; };
 		B37117331E9C00AA003D3484 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionHeaderView.swift; path = Views/SectionHeaderView.swift; sourceTree = "<group>"; };
 		B37117341E9C00AA003D3484 /* SectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SectionHeaderView.xib; path = Views/SectionHeaderView.xib; sourceTree = "<group>"; };
+		B379A24A1EE8400400CB8127 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewModel.swift; path = ViewModels/ViewModel.swift; sourceTree = "<group>"; };
 		B3925BED1DF1FBCA003C596A /* PantryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PantryVC.swift; path = ViewControllers/PantryVC.swift; sourceTree = "<group>"; };
 		B3925BEE1DF1FBCA003C596A /* PrepVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepVC.swift; path = ViewControllers/PrepVC.swift; sourceTree = "<group>"; };
 		B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichVC.swift; path = ViewControllers/SandwichVC.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			children = (
 				B35FE1A01EE790D000B17D42 /* PrepViewModel.swift */,
 				687C632C1EC3F77A008A574C /* PantryViewModel.swift */,
+				B379A24A1EE8400400CB8127 /* ViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B379A24B1EE8400400CB8127 /* ViewModel.swift in Sources */,
 				B3925BF01DF1FBCA003C596A /* PantryVC.swift in Sources */,
 				B397B0B11DDF79C10079BF6A /* Ingredient.swift in Sources */,
 				B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */,

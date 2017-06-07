@@ -42,7 +42,7 @@ extension PantryVC : UITableViewDataSource {
             else { return nil }
         header.isOpen = pantryVM.isOpenAt(section)
         header.section = section
-        header.titleLabel.text = pantryVM.sectionHeaderLabel(for: food, in: section)
+        header.titleLabel.text = pantryVM.sectionHeaderTitle(for: food, in: section)
         header.delegate = self
         return header
     }
