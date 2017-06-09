@@ -1,6 +1,7 @@
 protocol ViewModel {
+    associatedtype Section: SectionViewModel
     var pantry: Pantry { get }
-    var sectionVMs: [SectionViewModel] { get }
+    var sectionVMs: [Section] { get }
     var numberOfTypesOfFood: Int { get }
 
     func sectionHeaderTitle(for food: Food, in section: Int) -> String
@@ -45,4 +46,11 @@ extension ViewModel {
         guard section < sectionVMs.count else { return 0 }
         return sectionVMs[section].numberOfItems()
     }
+}
+
+protocol SectionViewModel {
+    var isOpen: Bool { get }
+    func ingredientAt(row index: Int) -> Ingredient?
+    func toggle()
+    func numberOfItems() -> Int
 }

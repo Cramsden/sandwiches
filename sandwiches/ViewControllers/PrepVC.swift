@@ -173,7 +173,7 @@ extension PrepVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         prepVM.deselectIngredientAt(indexPath)
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        if prepVM.selectedIngredientPaths.isEmpty { sammyTime.isEnabled = false }
+        if prepVM.allIngredientsUnselected { sammyTime.isEnabled = false }
     }
 
     func tableView(_ tableView: UITableView,

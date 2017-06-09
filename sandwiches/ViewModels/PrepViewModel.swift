@@ -2,86 +2,65 @@ import Foundation
 
 class PrepViewModel: ViewModel {
     var pantry: Pantry
-    var sectionVMs: [SectionViewModel]
-    private (set) var selectedIngredientPaths: [IndexPath]
+    var sectionVMs: [PrepSectionViewModel]
 
     init(pantry: Pantry) {
         self.pantry = pantry
-        self.selectedIngredientPaths = []
         self.sectionVMs = Food.all().map { food in
             let itemsForFood = pantry[food] ?? []
-            return SectionViewModel(items: itemsForFood)
+            return PrepSectionViewModel(items: itemsForFood)
         }
     }
 
     var tldr: Pantry {
         var current: Pantry = [:]
         Food.all().enumerated().forEach { (index, food) in
-            current[food] = sectionVMs[index].items
+            current[food] = sectionVMs[index].getItems()
         }
 
         return current
     }
 
-    func ingredientsFor(_ section: Int) -> [Ingredient]? {
-        guard let food = Food.forSection(section) else { return nil }
-        return pantry[food]
-    }
-
     func removeIngredientAt(_ indexPath: IndexPath) -> Bool {
         deselectIngredientAt(indexPath)
         sectionVMs[indexPath.section].removeIngredientAt(row: indexPath.row)
-        shiftSelectionsAfter(indexPath)
         return true
     }
 
     func selectIngredientAt(_ indexPath: IndexPath) {
-        selectedIngredientPaths.append(indexPath)
+        sectionVMs[indexPath.section].toggleSelectedIngredientAt(row: indexPath.row)
     }
 
     func deselectIngredientAt(_ indexPath: IndexPath) {
-        if let matchingIndex = selectedIngredientPaths.index(of: indexPath) {
-            selectedIngredientPaths.remove(at: matchingIndex)
-        }
+        sectionVMs[indexPath.section].toggleSelectedIngredientAt(row: indexPath.row)
     }
 
     func ingredientSelectedAt(_ indexPath: IndexPath) -> Bool {
-        return selectedIngredientPaths.contains(indexPath)
+        return sectionVMs[indexPath.section].isIngredientSelectedAt(row: indexPath.row)
     }
 
     func gatherIngredientsForSandwich() -> [Ingredient] {
-        let sandwichIngredients: [Ingredient] = selectedIngredientPaths.flatMap { selection in
-            if let ingredient = sectionVMs[selection.section].ingredientAt(row: selection.row) {
-                return ingredient
-            }
-
-            return nil
+        var ingredients: [Ingredient] = []
+        sectionVMs.forEach { sectionVM in
+            ingredients.append(contentsOf: sectionVM.gatherSelectedIngredients())
         }
-
-        cleanUpSelectedIngredients()
-        return sandwichIngredients
+        return ingredients
     }
 
     func resetSelections() {
-        selectedIngredientPaths = []
-    }
-
-    private func cleanUpSelectedIngredients() {
-        selectedIngredientPaths
-            .sorted()
-            .reversed()
-            .forEach { selection in
-                _ = removeIngredientAt(selection)
+        sectionVMs.forEach {
+            $0.deselectAllIngredients()
         }
     }
 
-    private func shiftSelectionsAfter(_ indexPath: IndexPath) {
-        selectedIngredientPaths = selectedIngredientPaths.map { selection -> IndexPath in
-            if selection.greaterThanInSection(indexPath) {
-                return IndexPath(row: selection.row-1, section: selection.section)
+    var allIngredientsUnselected: Bool {
+        for sectionVM in sectionVMs {
+            for item in sectionVM.items {
+                if item.isSelected {
+                    return false
+                }
             }
-
-            return selection
         }
+        return true
     }
 }

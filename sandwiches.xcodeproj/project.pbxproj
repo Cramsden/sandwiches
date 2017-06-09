@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		23FA5051A3C70EE37D34D57E /* Pods_sandwiches.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B7E1E8D64F226140B4B5A3 /* Pods_sandwiches.framework */; };
+		6803D0341EEA21530046AC98 /* PrepSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6803D0331EEA21530046AC98 /* PrepSectionViewModel.swift */; };
+		6803D0361EEA21860046AC98 /* PantrySectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6803D0351EEA21860046AC98 /* PantrySectionViewModel.swift */; };
 		687C632D1EC3F77A008A574C /* PantryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687C632C1EC3F77A008A574C /* PantryViewModel.swift */; };
 		68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */; };
 		B33F35A01ED0A0C8001B6E21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33F359F1ED0A0C8001B6E21 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 		14CF8EC3FCEDAC86413C6F6A /* Pods-sandwichesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwichesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sandwichesTests/Pods-sandwichesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		28E36171B67686AB94A356A4 /* Pods_sandwichesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sandwichesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CC4E66C1A4946B9C807CADF /* Pods-sandwiches.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwiches.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches.debug.xcconfig"; sourceTree = "<group>"; };
+		6803D0331EEA21530046AC98 /* PrepSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepSectionViewModel.swift; path = ViewModels/PrepSectionViewModel.swift; sourceTree = "<group>"; };
+		6803D0351EEA21860046AC98 /* PantrySectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PantrySectionViewModel.swift; path = ViewModels/PantrySectionViewModel.swift; sourceTree = "<group>"; };
 		687C632C1EC3F77A008A574C /* PantryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PantryViewModel.swift; path = ViewModels/PantryViewModel.swift; sourceTree = "<group>"; };
 		68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentVC.swift; path = ViewControllers/ParentVC.swift; sourceTree = "<group>"; };
 		693BCF5446A664BD37756AFB /* Pods-sandwiches.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwiches.release.xcconfig"; path = "Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches.release.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 				B35FE1A01EE790D000B17D42 /* PrepViewModel.swift */,
 				687C632C1EC3F77A008A574C /* PantryViewModel.swift */,
 				B379A24A1EE8400400CB8127 /* ViewModel.swift */,
+				6803D0331EEA21530046AC98 /* PrepSectionViewModel.swift */,
+				6803D0351EEA21860046AC98 /* PantrySectionViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -338,9 +344,11 @@
 				B3CD8D8A1E75D852000E3446 /* SandwichDetailVC.swift in Sources */,
 				B36948461E5A595500FB5148 /* IngredientService.swift in Sources */,
 				B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */,
+				6803D0361EEA21860046AC98 /* PantrySectionViewModel.swift in Sources */,
 				687C632D1EC3F77A008A574C /* PantryViewModel.swift in Sources */,
 				B37117351E9C00AA003D3484 /* SectionHeaderView.swift in Sources */,
 				B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */,
+				6803D0341EEA21530046AC98 /* PrepSectionViewModel.swift in Sources */,
 				B3CD8D851E75C9EA000E3446 /* IndexPathExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
