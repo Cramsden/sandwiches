@@ -1,6 +1,17 @@
 import Foundation
 
-class PrepViewModel: ViewModel {
+struct PrepViewModel: ViewModel {
+    private let yummy = ["Hearty", "Tasty", "So Good", "Nommable",
+                         "Ideal", "Great", "p amzng", "😍", "💣",
+                         "Saucy", "Dope", "✨", "Special"
+    ]
+    private let sandwich = ["Hero", "Sandwich", "Sub", "Hoagie",
+                            "Club", "Open-Faced", "Grinder", "Roll",
+                            "Finger Sammy", "Burrito", "Gyro", "Panini",
+                            "Slider", "Burger", "Special", "Footlong",
+                            "Po'boy", "Hot Mess", "Taco", "Wrap", "Bahnmi"
+    ]
+
     var pantry: Pantry
     var sectionVMs: [PrepSectionViewModel]
 
@@ -19,6 +30,12 @@ class PrepViewModel: ViewModel {
         }
 
         return current
+    }
+
+    func generateRandomSammyName() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return "\(dateFormatter.string(from: Date())) \(yummy.rando()) \(sandwich.rando())"
     }
 
     func removeIngredientAt(_ indexPath: IndexPath) -> Bool {

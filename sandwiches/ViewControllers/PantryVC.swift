@@ -4,7 +4,7 @@ typealias Pantry = [Food: [Ingredient]]
 
 class PantryVC: UIViewController {
     private var ingredientService = IngredientService()
-    fileprivate var pantryVM: PantryViewModel = PantryViewModel(pantry: [:])
+    fileprivate var pantryVM = PantryViewModel(pantry: [:])
 
     @IBOutlet weak var tableView: UITableView!
 

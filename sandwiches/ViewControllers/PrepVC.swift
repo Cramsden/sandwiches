@@ -1,19 +1,7 @@
 import UIKit
 
 class PrepVC: UIViewController {
-    private let yummy = ["Hearty", "Tasty", "So Good", "Nommable",
-                         "Ideal", "Great", "p amzng", "😍", "💣",
-                         "Saucy", "Dope", "✨", "Special"
-                         ]
-    private let sandwich = ["Hero", "Sandwich", "Sub", "Hoagie",
-                            "Club", "Open-Faced", "Grinder", "Roll",
-                            "Finger Sammy", "Burrito", "Gyro", "Panini",
-                            "Slider", "Burger", "Special", "Footlong",
-                            "Po'boy", "Hot Mess", "Taco", "Wrap", "Bahnmi"
-                            ]
-
     private var yesAction = UIAlertAction()
-    fileprivate let dateFormatter = DateFormatter()
     fileprivate var prepVM = PrepViewModel(pantry: [:])
 
     @IBOutlet weak var tableView: UITableView!
@@ -66,11 +54,9 @@ class PrepVC: UIViewController {
         }
 
         let surpriseMeAction = UIAlertAction(title: "Surprise Me!", style: .default) { _ in
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm"
             self.makeSandwichFrom(
                 ingredients: self.prepVM.gatherIngredientsForSandwich(),
-                withName: "\(dateFormatter.string(from: Date())) \(self.yummy.rando()) \(self.sandwich.rando())"
+                withName: self.prepVM.generateRandomSammyName()
             )
             self.sammyTime.isEnabled = false
             self.preppedView.isHidden = true
