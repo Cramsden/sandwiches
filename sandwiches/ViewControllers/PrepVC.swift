@@ -13,7 +13,7 @@ class PrepVC: UIViewController {
 
     @IBAction func cancelledSandwichTapped(_ sender: Any) {
         prepVM.resetSelections()
-        sammyTime.isEnabled = false
+        sammyTime.isEnabled = prepVM.hasSelectedIngredients
         preppedView.isHidden = true
         tableView.reloadData()
     }
@@ -24,7 +24,7 @@ class PrepVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sammyTime.isEnabled = false
+        sammyTime.isEnabled = prepVM.hasSelectedIngredients
         tableView.tableFooterView = UIView()
         tableView.register(SectionHeaderView.nib, forHeaderFooterViewReuseIdentifier: SectionHeaderView.identifier)
     }
@@ -58,7 +58,7 @@ class PrepVC: UIViewController {
                 ingredients: self.prepVM.gatherIngredientsForSandwich(),
                 withName: self.prepVM.generateRandomSammyName()
             )
-            self.sammyTime.isEnabled = false
+            self.sammyTime.isEnabled = self.prepVM.hasSelectedIngredients
             self.preppedView.isHidden = true
         }
         alertController.addAction(surpriseMeAction)
@@ -71,7 +71,7 @@ class PrepVC: UIViewController {
                 withName: name,
                 andDetail: detail
             )
-            self.sammyTime.isEnabled = false
+            self.sammyTime.isEnabled = self.prepVM.hasSelectedIngredients
             self.preppedView.isHidden = true
         }
 
@@ -152,14 +152,14 @@ extension PrepVC: UITableViewDataSource {
 extension PrepVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         prepVM.selectIngredientAt(indexPath)
-        sammyTime.isEnabled = true
+        sammyTime.isEnabled = prepVM.hasSelectedIngredients
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         prepVM.deselectIngredientAt(indexPath)
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        if prepVM.allIngredientsUnselected { sammyTime.isEnabled = false }
+        sammyTime.isEnabled = prepVM.hasSelectedIngredients
     }
 
     func tableView(_ tableView: UITableView,

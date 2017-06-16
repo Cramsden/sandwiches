@@ -45,11 +45,11 @@ struct PrepViewModel: ViewModel {
     }
 
     func selectIngredientAt(_ indexPath: IndexPath) {
-        sectionVMs[indexPath.section].toggleSelectedIngredientAt(row: indexPath.row)
+        sectionVMs[indexPath.section].toggleSelectionIngredientAt(row: indexPath.row)
     }
 
     func deselectIngredientAt(_ indexPath: IndexPath) {
-        sectionVMs[indexPath.section].toggleSelectedIngredientAt(row: indexPath.row)
+        sectionVMs[indexPath.section].toggleSelectionIngredientAt(row: indexPath.row)
     }
 
     func ingredientSelectedAt(_ indexPath: IndexPath) -> Bool {
@@ -70,14 +70,7 @@ struct PrepViewModel: ViewModel {
         }
     }
 
-    var allIngredientsUnselected: Bool {
-        for sectionVM in sectionVMs {
-            for item in sectionVM.items {
-                if item.isSelected {
-                    return false
-                }
-            }
-        }
-        return true
+    var hasSelectedIngredients: Bool {
+        return sectionVMs.reduce(0, { $0 + $1.selectedItemCount }) > 0
     }
 }
