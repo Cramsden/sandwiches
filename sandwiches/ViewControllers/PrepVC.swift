@@ -174,6 +174,7 @@ extension PrepVC: UITableViewDelegate {
             if prepVM.removeIngredientAt(indexPath) {
                 (parent as? ParentVC)?.sharedItems = prepVM.tldr
                 tableView.deleteRows(at: [indexPath], with: .fade)
+                sammyTime.isEnabled = prepVM.hasSelectedIngredients
             }
         }
         tableView.reloadSections(IndexSet(indexPath), with: .fade)

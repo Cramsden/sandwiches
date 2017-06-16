@@ -39,7 +39,6 @@ struct PrepViewModel: ViewModel {
     }
 
     func removeIngredientAt(_ indexPath: IndexPath) -> Bool {
-        deselectIngredientAt(indexPath)
         sectionVMs[indexPath.section].removeIngredientAt(row: indexPath.row)
         return true
     }

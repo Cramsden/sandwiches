@@ -26,6 +26,7 @@ class PrepSectionViewModel: SectionViewModel {
     }
 
     func removeIngredientAt(row index: Int) {
+        if isIngredientSelectedAt(row: index) { selectedItemCount -= 1 }
         items.remove(at: index)
     }
 
@@ -56,7 +57,7 @@ class PrepSectionViewModel: SectionViewModel {
             .flatMap { selectableIngredient in
                 let ingredientToGather = selectableIngredient.ingredent
                 if let index = items.index(where: { selectableIngredient.ingredent.name == $0.ingredent.name }) {
-                    items.remove(at: index)
+                    removeIngredientAt(row: index)
                     return ingredientToGather
                 }
                 return nil
