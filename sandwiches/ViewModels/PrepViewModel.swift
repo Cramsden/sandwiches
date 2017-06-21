@@ -32,6 +32,10 @@ struct PrepViewModel: ViewModel {
         return current
     }
 
+    var hasSelectedIngredients: Bool {
+        return sectionVMs.reduce(0, { $0 + $1.selectedItemCount }) > 0
+    }
+
     func generateRandomSammyName() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
@@ -43,11 +47,7 @@ struct PrepViewModel: ViewModel {
         return true
     }
 
-    func selectIngredientAt(_ indexPath: IndexPath) {
-        sectionVMs[indexPath.section].toggleSelectionIngredientAt(row: indexPath.row)
-    }
-
-    func deselectIngredientAt(_ indexPath: IndexPath) {
+    func toggleSectionAt(_ indexPath: IndexPath) {
         sectionVMs[indexPath.section].toggleSelectionIngredientAt(row: indexPath.row)
     }
 
@@ -67,9 +67,5 @@ struct PrepViewModel: ViewModel {
         sectionVMs.forEach {
             $0.deselectAllIngredients()
         }
-    }
-
-    var hasSelectedIngredients: Bool {
-        return sectionVMs.reduce(0, { $0 + $1.selectedItemCount }) > 0
     }
 }

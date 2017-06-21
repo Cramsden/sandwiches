@@ -143,22 +143,25 @@ extension PrepVC: UITableViewDataSource {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(ingredientForRow.name)")
         cell.textLabel?.text = ingredientForRow.name
         cell.selectionStyle = .none
-        cell.isSelected = prepVM.ingredientSelectedAt(indexPath)
-        cell.accessoryType = cell.isSelected ? .checkmark : .none
+        cell.accessoryType = prepVM.ingredientSelectedAt(indexPath) ? .checkmark : .none
         return cell
     }
 }
 
 extension PrepVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        prepVM.selectIngredientAt(indexPath)
+        prepVM.toggleSectionAt(indexPath)
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = prepVM.ingredientSelectedAt(indexPath) ? .checkmark : .none
+        }
         sammyTime.isEnabled = prepVM.hasSelectedIngredients
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        prepVM.deselectIngredientAt(indexPath)
-        tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        prepVM.toggleSectionAt(indexPath)
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = prepVM.ingredientSelectedAt(indexPath) ? .checkmark : .none
+        }
         sammyTime.isEnabled = prepVM.hasSelectedIngredients
     }
 
