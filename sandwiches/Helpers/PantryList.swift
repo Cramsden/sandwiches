@@ -44,14 +44,10 @@ class PantryList {
         return true
     }
 
-    func selectIngredientAt(_ indexPath: IndexPath) {
-        selectedIngredientPaths.append(indexPath)
-    }
-
-    func deselectIngredientAt(_ indexPath: IndexPath) {
-        if let matchingIndex = selectedIngredientPaths.index(of: indexPath) {
-            selectedIngredientPaths.remove(at: matchingIndex)
-        }
+    func toggleSelectionAt(_ indexPath: IndexPath) {
+        ingredientSelectedAt(indexPath)
+            ? deselectIngredientAt(indexPath)
+            : selectIngredientAt(indexPath)
     }
 
     func ingredientSelectedAt(_ indexPath: IndexPath) -> Bool {
@@ -95,6 +91,16 @@ class PantryList {
             }
 
             return selection
+        }
+    }
+
+    private func selectIngredientAt(_ indexPath: IndexPath) {
+        selectedIngredientPaths.append(indexPath)
+    }
+
+    private func deselectIngredientAt(_ indexPath: IndexPath) {
+        if let matchingIndex = selectedIngredientPaths.index(of: indexPath) {
+            selectedIngredientPaths.remove(at: matchingIndex)
         }
     }
 }

@@ -159,23 +159,24 @@ extension PrepVC: UITableViewDataSource {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(ingredientForRow.name)")
         cell.textLabel?.text = ingredientForRow.name
         cell.selectionStyle = .none
-        cell.isSelected = prepList.ingredientSelectedAt(indexPath)
-        cell.accessoryType = cell.isSelected ? .checkmark : .none
+        cell.accessoryType = prepList.ingredientSelectedAt(indexPath) ? .checkmark : .none
         return cell
     }
 }
 
 extension PrepVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        prepList.selectIngredientAt(indexPath)
-        sammyTime.isEnabled = true
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        prepList.toggleSelectionAt(indexPath)
+        let isSammyTime = !prepList.getSelectedIngredients().isEmpty
+        sammyTime.isEnabled = isSammyTime ? true : false
+        tableView.cellForRow(at: indexPath)?.accessoryType = prepList.ingredientSelectedAt(indexPath) ? .checkmark : .none
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        prepList.deselectIngredientAt(indexPath)
-        tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        if prepList.getSelectedIngredients().isEmpty { sammyTime.isEnabled = false }
+        prepList.toggleSelectionAt(indexPath)
+        let isSammyTime = !prepList.getSelectedIngredients().isEmpty
+        sammyTime.isEnabled = isSammyTime ? true : false
+        tableView.cellForRow(at: indexPath)?.accessoryType = prepList.ingredientSelectedAt(indexPath) ? .checkmark : .none
     }
 
     func tableView(_ tableView: UITableView,
