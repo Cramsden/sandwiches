@@ -1,7 +1,7 @@
 import UIKit
 
 class SandwichVC: UIViewController {
-    fileprivate var sandwiches: [Sandwich] = []
+    fileprivate var viewModel = SandwichesViewModel(sandwiches: [])
     var sammyToDelete: Sandwich?
 
     @IBOutlet weak var tableView: UITableView!
@@ -15,7 +15,7 @@ class SandwichVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         guard let parent = parent?.parent as? ParentVC else { return }
         removeEatenSammy()
-        sandwiches = parent.sharedSandwiches
+        viewModel = SandwichesViewModel(sandwiches: parent.sharedSandwiches)
         tableView.reloadData()
     }
 
@@ -31,39 +31,26 @@ class SandwichVC: UIViewController {
 
 extension SandwichVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        if sandwiches.isEmpty {
+        if viewModel.hasSandwiches {
+            tableView.backgroundView = nil
+            return 1
+        } else {
             addNoSammiesLabel()
             return 0
         }
-
-        tableView.backgroundView = nil
-        return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sandwiches.count
+        return viewModel.numberOfSandwiches
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard sandwiches.count > indexPath.row else { return UITableViewCell() }
+        guard let sandwich = viewModel.sandwich(at: indexPath.row) else { return UITableViewCell() }
 
-        let sandwichForRow = sandwiches[indexPath.row]
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(sandwichForRow.name)")
-        cell.textLabel?.text = sandwichForRow.name
-        cell.textLabel?.textColor = setColorFor(sandwich: sandwichForRow)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "\(sandwich.name)")
+        cell.textLabel?.text = sandwich.name
+        cell.textLabel?.textColor = viewModel.colorFor(sandwich)
         return cell
-    }
-
-    private func setColorFor(sandwich: Sandwich) -> UIColor {
-        if sandwich.isExpired() {
-            return UIColor.red
-        }
-
-        if sandwich.expiresSoon() {
-            return UIColor.orange
-        }
-
-        return UIColor.blue
     }
 
     private func addNoSammiesLabel() {
@@ -75,7 +62,7 @@ extension SandwichVC: UITableViewDataSource {
                 height: tableView.bounds.height
             )
         )
-        noSammiesLabel.text = "😭\nNo sandwiches!\n You should make some, eh?\n🤔"
+        noSammiesLabel.text = viewModel.noSammiesText
         noSammiesLabel.textColor = UIColor.gray
         noSammiesLabel.textAlignment = .center
         noSammiesLabel.numberOfLines = 4
@@ -96,8 +83,9 @@ extension SandwichVC: UITableViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToSandwich",
             let destination = segue.destination as? SandwichDetailVC,
-            let selectedSandwichRow = tableView.indexPathForSelectedRow?.row {
-            destination.sandwich = sandwiches[selectedSandwichRow]
+            let selectedSandwichRow = tableView.indexPathForSelectedRow?.row,
+            let sandwich = viewModel.sandwich(at: selectedSandwichRow) {
+            destination.sandwich = sandwich
         }
     }
 
@@ -105,13 +93,12 @@ extension SandwichVC: UITableViewDelegate {
                    commit editingStyle: UITableViewCellEditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            sandwiches.remove(at: indexPath.row)
+            viewModel.remove(at: indexPath.row)
             (parent?.parent as? ParentVC)?.sharedSandwiches.remove(at: indexPath.row)
 
-            sandwiches.count == 0 ?
-                tableView.reloadData()
-                :
-                tableView.deleteRows(at: [indexPath], with: .fade)
+            viewModel.hasSandwiches
+                ? tableView.deleteRows(at: [indexPath], with: .fade)
+                : tableView.reloadData()
         }
     }
 }

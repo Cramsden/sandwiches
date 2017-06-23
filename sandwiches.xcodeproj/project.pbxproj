@@ -27,9 +27,10 @@
 		B3925BF11DF1FBCA003C596A /* PrepVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEE1DF1FBCA003C596A /* PrepVC.swift */; };
 		B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */; };
 		B397B0B11DDF79C10079BF6A /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B397B0B01DDF79C10079BF6A /* Ingredient.swift */; };
-		B3CD8D851E75C9EA000E3446 /* IndexPathExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D841E75C9EA000E3446 /* IndexPathExtensions.swift */; };
 		B3CD8D881E75CA27000E3446 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D871E75CA27000E3446 /* ArrayExtensions.swift */; };
 		B3CD8D8A1E75D852000E3446 /* SandwichDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CD8D891E75D852000E3446 /* SandwichDetailVC.swift */; };
+		B3D9D1271EFC9B4700F1E7F6 /* SandwichsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D9D1261EFC9B4700F1E7F6 /* SandwichsViewModel.swift */; };
+		B3D9D1291EFCB4F500F1E7F6 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D9D1281EFCB4F500F1E7F6 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,9 +60,10 @@
 		B3925BEE1DF1FBCA003C596A /* PrepVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepVC.swift; path = ViewControllers/PrepVC.swift; sourceTree = "<group>"; };
 		B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichVC.swift; path = ViewControllers/SandwichVC.swift; sourceTree = "<group>"; };
 		B397B0B01DDF79C10079BF6A /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ingredient.swift; path = Models/Ingredient.swift; sourceTree = "<group>"; };
-		B3CD8D841E75C9EA000E3446 /* IndexPathExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IndexPathExtensions.swift; path = Extensions/IndexPathExtensions.swift; sourceTree = "<group>"; };
 		B3CD8D871E75CA27000E3446 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArrayExtensions.swift; path = Extensions/ArrayExtensions.swift; sourceTree = "<group>"; };
 		B3CD8D891E75D852000E3446 /* SandwichDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichDetailVC.swift; path = ViewControllers/SandwichDetailVC.swift; sourceTree = "<group>"; };
+		B3D9D1261EFC9B4700F1E7F6 /* SandwichsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SandwichsViewModel.swift; path = ViewModels/SandwichsViewModel.swift; sourceTree = "<group>"; };
+		B3D9D1281EFCB4F500F1E7F6 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = Extensions/DateExtension.swift; sourceTree = "<group>"; };
 		C75E5932E3CC600EA162C880 /* Pods-sandwichesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwichesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-sandwichesTests/Pods-sandwichesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,11 +93,12 @@
 		687C632B1EC3F73B008A574C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				B35FE1A01EE790D000B17D42 /* PrepViewModel.swift */,
-				687C632C1EC3F77A008A574C /* PantryViewModel.swift */,
 				B379A24A1EE8400400CB8127 /* ViewModel.swift */,
-				6803D0331EEA21530046AC98 /* PrepSectionViewModel.swift */,
 				6803D0351EEA21860046AC98 /* PantrySectionViewModel.swift */,
+				687C632C1EC3F77A008A574C /* PantryViewModel.swift */,
+				6803D0331EEA21530046AC98 /* PrepSectionViewModel.swift */,
+				B35FE1A01EE790D000B17D42 /* PrepViewModel.swift */,
+				B3D9D1261EFC9B4700F1E7F6 /* SandwichsViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -168,8 +171,8 @@
 		B3CD8D861E75C9F2000E3446 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B3CD8D841E75C9EA000E3446 /* IndexPathExtensions.swift */,
 				B3CD8D871E75CA27000E3446 /* ArrayExtensions.swift */,
+				B3D9D1281EFCB4F500F1E7F6 /* DateExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				B397B0B11DDF79C10079BF6A /* Ingredient.swift in Sources */,
 				B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */,
 				68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */,
+				B3D9D1291EFCB4F500F1E7F6 /* DateExtension.swift in Sources */,
 				B37117301E9BEED8003D3484 /* IngredientCell.swift in Sources */,
 				B37117321E9BEF1C003D3484 /* Sandwich.swift in Sources */,
 				B35FE1A11EE790D000B17D42 /* PrepViewModel.swift in Sources */,
@@ -347,9 +351,9 @@
 				6803D0361EEA21860046AC98 /* PantrySectionViewModel.swift in Sources */,
 				687C632D1EC3F77A008A574C /* PantryViewModel.swift in Sources */,
 				B37117351E9C00AA003D3484 /* SectionHeaderView.swift in Sources */,
+				B3D9D1271EFC9B4700F1E7F6 /* SandwichsViewModel.swift in Sources */,
 				B3925BF21DF1FBCA003C596A /* SandwichVC.swift in Sources */,
 				6803D0341EEA21530046AC98 /* PrepSectionViewModel.swift in Sources */,
-				B3CD8D851E75C9EA000E3446 /* IndexPathExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

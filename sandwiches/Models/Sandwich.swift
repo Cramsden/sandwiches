@@ -1,7 +1,12 @@
 import Foundation
 
+enum Quality {
+    case yummy, expiresSoon, expired, none
+}
+
 struct Sandwich {
     let ingredients: [Ingredient]
+    var quality: Quality
     let name: String
     let details: String?
 
@@ -15,23 +20,27 @@ struct Sandwich {
     init (name: String, ingredients: [Ingredient], details: String?) {
         self.name = name
         self.ingredients = ingredients
+        self.quality = .none
         self.details = details
-    }
-
-    func isExpired() -> Bool {
-        guard let leastFresh = leastFreshIngredient else { return false }
-        return leastFresh.bestBy < Date()
-    }
-
-    func expiresSoon() -> Bool {
-        guard let leastFresh = leastFreshIngredient else { return false }
-        return leastFresh.bestBy < Date() - 1
+        setQuality()
     }
 
     func isNastierThan(_ sandwich: Sandwich) -> Bool {
         guard let otherLeastFresh = sandwich.leastFreshIngredient,
             let leastFresh = self.leastFreshIngredient else { return false }
         return leastFresh.bestBy < otherLeastFresh.bestBy
+    }
+
+    private mutating func setQuality() {
+        guard let ingredient = leastFreshIngredient else { return }
+
+        if ingredient.bestBy < Date() {
+            self.quality = .expired
+        } else if ingredient.bestBy <= Date.daysFromNow(2) {
+            self.quality = .expiresSoon
+        } else {
+            self.quality = .yummy
+        }
     }
 }
 
