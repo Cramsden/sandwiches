@@ -26,7 +26,7 @@ class IngredientService {
 
     private func buildPantryFrom(_ json: JSON) -> Pantry {
         var results: Pantry = [:]
-        Food.all().forEach { food in
+        Food.all.forEach { food in
             let foodArray = json[food.rawValue].arrayValue
             let ingredients = foodArray.map { json in
                 Ingredient(

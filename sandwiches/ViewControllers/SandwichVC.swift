@@ -1,8 +1,7 @@
 import UIKit
 
-class SandwichVC: UIViewController {
+class SandwichVC: UIViewController, Eater {
     fileprivate var viewModel = SandwichesViewModel(sandwiches: [])
-    var sammyToDelete: Sandwich?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -14,18 +13,17 @@ class SandwichVC: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         guard let parent = parent?.parent as? ParentVC else { return }
-        removeEatenSammy()
         viewModel = SandwichesViewModel(sandwiches: parent.sharedSandwiches)
         tableView.reloadData()
     }
 
-    private func removeEatenSammy() {
-        guard let parent = parent?.parent as? ParentVC else { return }
-        if let eatenSammy = sammyToDelete,
-            let matchingIndex = parent.sharedSandwiches.index(of: eatenSammy) {
-            parent.sharedSandwiches.remove(at: matchingIndex)
-            sammyToDelete = nil
+    func eat(_ sandwich: Sandwich) {
+        guard let parent = parent?.parent as? ParentVC,
+            let matchingIndex = parent.sharedSandwiches.index(of: sandwich) else {
+                return
         }
+
+        parent.sharedSandwiches.remove(at: matchingIndex)
     }
 }
 
@@ -77,7 +75,7 @@ extension SandwichVC: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         performSegue(withIdentifier: "goToSandwich", sender: self)
+        performSegue(withIdentifier: "goToSandwich", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,6 +84,7 @@ extension SandwichVC: UITableViewDelegate {
             let selectedSandwichRow = tableView.indexPathForSelectedRow?.row,
             let sandwich = viewModel.sandwich(at: selectedSandwichRow) {
             destination.sandwich = sandwich
+            destination.delegate = self
         }
     }
 

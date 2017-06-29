@@ -17,7 +17,7 @@ struct PrepViewModel: ViewModel {
 
     init(pantry: Pantry) {
         self.pantry = pantry
-        self.sectionVMs = Food.all().map { food in
+        self.sectionVMs = Food.all.map { food in
             let itemsForFood = pantry[food] ?? []
             return PrepSectionViewModel(items: itemsForFood)
         }
@@ -25,7 +25,7 @@ struct PrepViewModel: ViewModel {
 
     var tldr: Pantry {
         var current: Pantry = [:]
-        Food.all().enumerated().forEach { (index, food) in
+        Food.all.enumerated().forEach { (index, food) in
             current[food] = sectionVMs[index].getItems()
         }
 

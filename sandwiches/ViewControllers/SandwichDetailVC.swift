@@ -1,16 +1,20 @@
 import UIKit
 
+protocol Eater {
+    func eat(_ sandwich: Sandwich)
+}
+
 class SandwichDetailVC: UIViewController {
     fileprivate let ingredientsPerRow = CGFloat(4)
     fileprivate let insets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     var sandwich: Sandwich?
+    var delegate: Eater!
 
     @IBOutlet weak var ingredientCollection: UICollectionView!
 
     @IBAction func eatSammie(_ sender: Any) {
-        if let vc = navigationController?.childViewControllers.first as? SandwichVC,
-            let sandwich = sandwich {
-                vc.sammyToDelete = sandwich
+        if let sandwich = sandwich {
+            delegate.eat(sandwich)
         }
         _ = navigationController?.popToRootViewController(animated: true)
     }

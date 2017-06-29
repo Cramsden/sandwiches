@@ -61,8 +61,8 @@ extension PantryVC : UITableViewDataSource {
 
 extension PantryVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedFoodType = Food.all()[indexPath.section]
-        guard let parent = parent as? ParentVC
+        guard let selectedFoodType = Food.forSection(indexPath.section),
+            let parent = parent as? ParentVC
             else { return }
 
         if let prepIngredient = pantryVM.nabIngredientAt(indexPath.row, andSection: indexPath.section) {

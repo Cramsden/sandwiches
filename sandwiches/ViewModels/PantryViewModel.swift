@@ -4,7 +4,7 @@ struct PantryViewModel: ViewModel {
 
     init(pantry: Pantry) {
         self.pantry = pantry
-        self.sectionVMs = Food.all().map { food in
+        self.sectionVMs = Food.all.map { food in
             let itemsForFood = pantry[food] ?? []
             return PantrySectionViewModel(items: itemsForFood)
         }

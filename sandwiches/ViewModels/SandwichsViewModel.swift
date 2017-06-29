@@ -18,11 +18,7 @@ struct SandwichesViewModel {
     }
 
     func sandwich(at index: Int) -> Sandwich? {
-        if sandwiches.inRange(index) {
-            return sandwiches[index]
-        } else {
-            return nil
-        }
+        return sandwiches.elementMaybeAt(index)
     }
 
     func colorFor(_ sandwich: Sandwich) -> UIColor {

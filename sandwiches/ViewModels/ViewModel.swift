@@ -14,7 +14,7 @@ protocol ViewModel {
 
 extension ViewModel {
     var numberOfTypesOfFood: Int {
-        return Food.all().count
+        return Food.all.count
     }
 
     func sectionHeaderTitle(for food: Food, in section: Int) -> String {

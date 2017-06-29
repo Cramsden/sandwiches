@@ -5,7 +5,8 @@ extension Array {
         return self[Int(arc4random_uniform(UInt32(count)))]
     }
 
-    func inRange(_ index: Int) -> Bool {
-        return index >= 0 && index < count
+    func elementMaybeAt(_ index: Int) -> Element? {
+        guard index >= 0 && index < count else { return nil }
+        return self[index]
     }
 }
