@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		23FA5051A3C70EE37D34D57E /* Pods_sandwiches.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98B7E1E8D64F226140B4B5A3 /* Pods_sandwiches.framework */; };
 		68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */; };
+		B3601AC31F1EA8A800672A0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3601AC21F1EA8A800672A0D /* Assets.xcassets */; };
 		B36948461E5A595500FB5148 /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36948451E5A595500FB5148 /* IngredientService.swift */; };
 		B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3697BB31DDF6E90002A3EE0 /* AppDelegate.swift */; };
 		B3697BBB1DDF6E90002A3EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3697BB91DDF6E90002A3EE0 /* Main.storyboard */; };
-		B3697BBD1DDF6E90002A3EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3697BBC1DDF6E90002A3EE0 /* Assets.xcassets */; };
 		B3697BC01DDF6E90002A3EE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3697BBE1DDF6E90002A3EE0 /* LaunchScreen.storyboard */; };
 		B37117301E9BEED8003D3484 /* IngredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B371172F1E9BEED8003D3484 /* IngredientCell.swift */; };
 		B37117321E9BEF1C003D3484 /* Sandwich.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37117311E9BEF1C003D3484 /* Sandwich.swift */; };
@@ -35,11 +35,11 @@
 		68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentVC.swift; path = ViewControllers/ParentVC.swift; sourceTree = "<group>"; };
 		693BCF5446A664BD37756AFB /* Pods-sandwiches.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwiches.release.xcconfig"; path = "Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches.release.xcconfig"; sourceTree = "<group>"; };
 		98B7E1E8D64F226140B4B5A3 /* Pods_sandwiches.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sandwiches.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3601AC21F1EA8A800672A0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B36948451E5A595500FB5148 /* IngredientService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientService.swift; path = Services/IngredientService.swift; sourceTree = "<group>"; };
 		B3697BB01DDF6E90002A3EE0 /* sandwiches.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sandwiches.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3697BB31DDF6E90002A3EE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3697BBA1DDF6E90002A3EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B3697BBC1DDF6E90002A3EE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = /Users/cramsden/memory/sandwiches/sandwiches/Assets.xcassets; sourceTree = "<absolute>"; };
 		B3697BBF1DDF6E90002A3EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3697BC11DDF6E90002A3EE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B371172F1E9BEED8003D3484 /* IngredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientCell.swift; path = Views/IngredientCell.swift; sourceTree = "<group>"; };
@@ -109,6 +109,7 @@
 		B3697BB21DDF6E90002A3EE0 /* sandwiches */ = {
 			isa = PBXGroup;
 			children = (
+				B3601AC21F1EA8A800672A0D /* Assets.xcassets */,
 				B3CD8D861E75C9F2000E3446 /* Extensions */,
 				B3CD8D831E74D7C5000E3446 /* Helpers */,
 				B397B0AF1DDF79880079BF6A /* Models */,
@@ -118,7 +119,6 @@
 				B3697BBE1DDF6E90002A3EE0 /* LaunchScreen.storyboard */,
 				B3697BB91DDF6E90002A3EE0 /* Main.storyboard */,
 				B3697BB31DDF6E90002A3EE0 /* AppDelegate.swift */,
-				B3697BBC1DDF6E90002A3EE0 /* Assets.xcassets */,
 				B3CD8D8D1E75DBC8000E3446 /* Views */,
 			);
 			path = sandwiches;
@@ -246,8 +246,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3697BC01DDF6E90002A3EE0 /* LaunchScreen.storyboard in Resources */,
-				B3697BBD1DDF6E90002A3EE0 /* Assets.xcassets in Resources */,
 				B3697BBB1DDF6E90002A3EE0 /* Main.storyboard in Resources */,
+				B3601AC31F1EA8A800672A0D /* Assets.xcassets in Resources */,
 				B37117361E9C00AA003D3484 /* SectionHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
