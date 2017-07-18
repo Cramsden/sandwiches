@@ -80,6 +80,8 @@ extension PantryVC: UITableViewDelegate {
 extension PantryVC: SectionHeaderDelegate {
     func didTapHeader(in section: Int, shouldClose: Bool) {
         pantryVM.toggleAtSection(section)
-        tableView.reloadSections(IndexSet(arrayLiteral: section), with: .automatic)
+        tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+        let sectionHeaderRect = tableView.rectForHeader(inSection: section)
+        tableView.scrollRectToVisible(sectionHeaderRect, animated: true)
     }
 }
