@@ -4,6 +4,7 @@
 #### iOS ####
 Pods/
 build/
+Profiles/
 *.pbxuser
 !default.pbxuser
 *.mode1v3

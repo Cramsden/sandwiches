@@ -193,7 +193,7 @@ extension PrepVC: UITableViewDelegate {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
-        tableView.reloadSections(IndexSet(indexPath), with: .fade)
+        tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
     }
 }
 
