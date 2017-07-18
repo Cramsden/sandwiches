@@ -180,7 +180,7 @@ extension PrepVC: UITableViewDelegate {
                 sammyTime.isEnabled = prepVM.hasSelectedIngredients
             }
         }
-        tableView.reloadSections(IndexSet(indexPath), with: .fade)
+        tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
     }
 }
 
