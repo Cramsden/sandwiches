@@ -19,7 +19,7 @@ module Sammies
     private
     def gathered_entities
       keys.each_with_object({}) do |key, memo|
-        number_of_entities = Faker::Number.between(3,36)
+        number_of_entities = Faker::Number.between(300,400)
         puts "### Generating #{key} with #{number_of_entities} entities ###"
         memo[key.to_sym] = Sammies::EntityCollection.new(number_of_entities).collection
       end

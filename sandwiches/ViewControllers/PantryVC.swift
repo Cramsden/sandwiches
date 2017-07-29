@@ -1,10 +1,8 @@
 import UIKit
 
-typealias Pantry = [Food: [Ingredient]]
-
 class PantryVC: UIViewController {
-    private var ingredientService = IngredientService()
-    fileprivate var pantryVM = PantryViewModel(pantry: [:])
+    private var networkService = NetworkService()
+    fileprivate var pantryVM = PantryViewModel()
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -14,8 +12,8 @@ class PantryVC: UIViewController {
         tableView.register(SectionHeaderView.nib, forHeaderFooterViewReuseIdentifier: SectionHeaderView.identifier)
         tableView.tableFooterView = UIView()
 
-        ingredientService.getAllIngredients { response in
-            self.pantryVM = PantryViewModel(pantry: response)
+        networkService.getAllIngredients { response in
+            Service.shared().updatePantryWith(response)
             self.tableView.reloadData()
         }
     }
@@ -61,19 +59,8 @@ extension PantryVC : UITableViewDataSource {
 
 extension PantryVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selectedFoodType = Food.forSection(indexPath.section),
-            let parent = parent as? ParentVC
-            else { return }
-
-        if let prepIngredient = pantryVM.nabIngredientAt(indexPath.row, andSection: indexPath.section) {
-            if parent.sharedItems[selectedFoodType] != nil {
-                parent.sharedItems[selectedFoodType]!.append(prepIngredient)
-            } else {
-                parent.sharedItems[selectedFoodType] = [prepIngredient]
-            }
-
-            tableView.reloadData()
-        }
+        pantryVM.nabIngredientAt(indexPath.row, andSection: indexPath.section)
+        tableView.reloadData()
     }
 }
 

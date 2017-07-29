@@ -1,7 +1,7 @@
 import UIKit
 
 class SandwichVC: UIViewController, Eater {
-    fileprivate var viewModel = SandwichesViewModel(sandwiches: [])
+    fileprivate var viewModel = SandwichesViewModel()
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -12,18 +12,11 @@ class SandwichVC: UIViewController, Eater {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        guard let parent = parent?.parent as? ParentVC else { return }
-        viewModel = SandwichesViewModel(sandwiches: parent.sharedSandwiches)
         tableView.reloadData()
     }
 
     func eat(_ sandwich: Sandwich) {
-        guard let parent = parent?.parent as? ParentVC,
-            let matchingIndex = parent.sharedSandwiches.index(of: sandwich) else {
-                return
-        }
-
-        parent.sharedSandwiches.remove(at: matchingIndex)
+        viewModel.remove(sandwich)
     }
 }
 
@@ -91,13 +84,13 @@ extension SandwichVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCellEditingStyle,
                    forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            viewModel.remove(at: indexPath.row)
-            (parent?.parent as? ParentVC)?.sharedSandwiches.remove(at: indexPath.row)
-
-            viewModel.hasSandwiches
-                ? tableView.deleteRows(at: [indexPath], with: .fade)
-                : tableView.reloadData()
+        guard editingStyle == .delete else { return }
+        if let sammie = viewModel.sandwich(at: indexPath.row) {
+            viewModel.remove(sammie)
         }
+
+        viewModel.hasSandwiches
+            ? tableView.deleteRows(at: [indexPath], with: .fade)
+            : tableView.reloadData()
     }
 }

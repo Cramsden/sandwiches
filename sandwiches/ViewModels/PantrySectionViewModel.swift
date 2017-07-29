@@ -1,9 +1,11 @@
 class PantrySectionViewModel: SectionViewModel {
-    var items: [Ingredient]
+    private let service: Service
+    private let food: Food
     private (set) var isOpen = true
 
-    init(items: [Ingredient]) {
-        self.items = items
+    init(food: Food, service: Service = Service.shared()) {
+        self.food = food
+        self.service = service
     }
 
     func toggle() {
@@ -11,20 +13,18 @@ class PantrySectionViewModel: SectionViewModel {
     }
 
     func numberOfItems() -> Int {
-        return items.count
+        return service.ingredientsInPantry(for: food).count
     }
 
     func removeIngredientAt(row index: Int) {
-        items.remove(at: index)
+        service.removePantryIngredient(for: food, at: index)
     }
 
-    func nabIngredientAt(row index: Int) -> Ingredient? {
-        guard index < items.count else { return nil }
-        return items[index].takeOneForPrep()
+    func nabIngredientAt(row index: Int) {
+        service.selectForPrep(from: food, at: index)
     }
 
     func ingredientAt(row index: Int) -> Ingredient? {
-        guard index < items.count else { return nil }
-        return items[index]
+        return service.ingredientInPantry(for: food, at: index)
     }
 }

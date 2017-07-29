@@ -2,7 +2,7 @@ import UIKit
 
 class PrepVC: UIViewController {
     private var yesAction = UIAlertAction()
-    fileprivate var prepVM = PrepViewModel(pantry: [:])
+    fileprivate var prepVM = PrepViewModel()
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var preppedView: UIView!
@@ -30,11 +30,9 @@ class PrepVC: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if let parent = parent as? ParentVC {
-            prepVM = PrepViewModel(pantry: parent.sharedItems)
-            preppedView.isHidden = true
-            tableView.reloadData()
-        }
+        prepVM = PrepViewModel()
+        preppedView.isHidden = true
+        tableView.reloadData()
     }
 
     private func buildSandwichAlert() -> UIAlertController {
@@ -50,27 +48,23 @@ class PrepVC: UIViewController {
         }
 
         alertController.addTextField { (textField) -> Void in
-            textField.placeholder = "Sammie Description"
+            textField.placeholder = "Sammy Description"
         }
 
         let surpriseMeAction = UIAlertAction(title: "Surprise Me!", style: .default) { _ in
-            self.makeSandwichFrom(
-                ingredients: self.prepVM.gatherIngredientsForSandwich(),
-                withName: self.prepVM.generateRandomSammyName()
-            )
+            self.prepVM.makeSandwich()
+
             self.sammyTime.isEnabled = self.prepVM.hasSelectedIngredients
             self.preppedView.isHidden = true
         }
         alertController.addAction(surpriseMeAction)
 
         yesAction = UIAlertAction(title: "Make it!", style: .default) { _ in
-            let name = alertController.textFields?.first?.text ?? ""
-            let detail = alertController.textFields?.last?.text ?? ""
-            self.makeSandwichFrom(
-                ingredients: self.prepVM.gatherIngredientsForSandwich(),
-                withName: name,
-                andDetail: detail
-            )
+            let name = alertController.textFields?.first?.text ?? "Name"
+            let detail = alertController.textFields?.last?.text ?? "Detail"
+
+            self.prepVM.makeSandwich(name, detail)
+
             self.sammyTime.isEnabled = self.prepVM.hasSelectedIngredients
             self.preppedView.isHidden = true
         }
@@ -83,32 +77,6 @@ class PrepVC: UIViewController {
 
     @objc private func textChanged(_ sender: UITextField) {
         yesAction.isEnabled = sender.text != ""
-    }
-
-    private func makeSandwichFrom(
-        ingredients: [Ingredient],
-        withName name: String,
-        andDetail detail: String = ""
-        ) {
-
-        if !ingredients.isEmpty {
-            let sandwich = newSandwichFrom(ingredients, withName: name, andDetail: detail)
-            (parent as? ParentVC)?.sharedSandwiches.append(sandwich)
-            (parent as? ParentVC)?.sharedItems = prepVM.tldr
-            tableView.reloadData()
-        }
-    }
-
-    private func newSandwichFrom(
-        _ ingredients: [Ingredient],
-        withName name: String,
-        andDetail detail: String
-        ) -> Sandwich {
-        return Sandwich(
-            name: name,
-            ingredients: ingredients,
-            details: detail
-        )
     }
 }
 
@@ -173,13 +141,12 @@ extension PrepVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCellEditingStyle,
                    forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            if prepVM.removeIngredientAt(indexPath) {
-                (parent as? ParentVC)?.sharedItems = prepVM.tldr
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                sammyTime.isEnabled = prepVM.hasSelectedIngredients
-            }
+        guard editingStyle == .delete else { return }
+        if prepVM.removeIngredientAt(indexPath) {
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            sammyTime.isEnabled = prepVM.hasSelectedIngredients
         }
+
         tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
     }
 }

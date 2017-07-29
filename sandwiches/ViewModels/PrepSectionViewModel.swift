@@ -1,15 +1,19 @@
 class PrepSectionViewModel: SectionViewModel {
-    typealias SelectableIngredient = (isSelected: Bool, ingredent: Ingredient)
+    typealias SelectableIngredient = (selected: Bool, ingredient: Ingredient)
 
-    var items: [SelectableIngredient]
-    private (set) var selectedItemCount: Int
-    private (set) var isOpen: Bool
+    private var ingredients: [SelectableIngredient]
+    private (set) var isOpen = true
+    let food: Food
 
-    init(items: [Ingredient]) {
-        self.selectedItemCount = 0
+    var selectedCount: Int {
+        return ingredients.filter { $0.selected == true }.count
+    }
+
+    init(food: Food, ingredients: [Ingredient]) {
         self.isOpen = true
-        self.items = items.map {
-            (isSelected: false, ingredient: $0)
+        self.food = food
+        self.ingredients = ingredients.map {
+            (selected: false, ingredient: $0)
         }
     }
 
@@ -17,66 +21,37 @@ class PrepSectionViewModel: SectionViewModel {
         isOpen = !isOpen
     }
 
-    func getItems() -> [Ingredient] {
-        return items.map { $0.ingredent }
-    }
-
     func numberOfItems() -> Int {
-        return items.count
+        return ingredients.count
     }
 
     func removeIngredientAt(row index: Int) {
-        if isIngredientSelectedAt(row: index) { selectedItemCount -= 1 }
-        items.remove(at: index)
-    }
-
-    func nabIngredientAt(row index: Int) -> Ingredient? {
-        guard index < items.count else { return nil }
-        return items[index].ingredent.takeOneForPrep()
+        ingredients.remove(at: index)
     }
 
     func ingredientAt(row index: Int) -> Ingredient? {
-        guard index < items.count else { return nil }
-        return items[index].ingredent
+        guard let selectable = ingredients.elementMaybeAt(index) else { return nil }
+        return selectable.ingredient
     }
 
-    func toggleSelectionIngredientAt(row index: Int) {
-        guard index < items.count else { return }
-        items[index].isSelected = !items[index].isSelected
-        updateCountForSelectionAt(index)
+    func toggleSelectionIngredientAt(row: Int) {
+        guard row > 0 && row < ingredients.count else { return }
+        ingredients[row].selected = !ingredients[row].selected
     }
 
     func isIngredientSelectedAt(row index: Int) -> Bool {
-        guard index < items.count else { return false }
-        return items[index].isSelected
+        guard let selectable = ingredients.elementMaybeAt(index) else { return false }
+        return selectable.selected
     }
 
     func gatherSelectedIngredients() -> [Ingredient] {
-        return items
-            .filter { $0.isSelected }
-            .flatMap { selectableIngredient in
-                let ingredientToGather = selectableIngredient.ingredent
-                if let index = items.index(where: { selectableIngredient.ingredent.name == $0.ingredent.name }) {
-                    removeIngredientAt(row: index)
-                    return ingredientToGather
-                }
-                return nil
-        }
+        return ingredients.filter { $0.selected }
+            .map { $0.ingredient }
     }
 
     func deselectAllIngredients() {
-        guard items.count > 0 else { return }
-
-        for i in 0...items.count-1 {
-            items[i].isSelected = false
+        for i in 0..<ingredients.count {
+            ingredients[i].selected = false
         }
-
-        selectedItemCount = 0
-    }
-
-    private func updateCountForSelectionAt(_ index: Int) {
-        isIngredientSelectedAt(row: index) ?
-            (selectedItemCount += 1) :
-            (selectedItemCount -= 1)
     }
 }

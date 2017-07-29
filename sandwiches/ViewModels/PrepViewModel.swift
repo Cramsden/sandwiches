@@ -1,6 +1,6 @@
 import Foundation
 
-struct PrepViewModel: ViewModel {
+class PrepViewModel: ViewModel {
     private let yummy = ["Hearty", "Tasty", "So Good", "Nommable",
                          "Ideal", "Great", "p amzng", "😍", "💣",
                          "Saucy", "Dope", "✨", "Special"
@@ -11,29 +11,18 @@ struct PrepViewModel: ViewModel {
                             "Slider", "Burger", "Special", "Footlong",
                             "Po'boy", "Hot Mess", "Taco", "Wrap", "Bahnmi"
     ]
+    private let service: Service
+    private (set) var sectionVMs: [PrepSectionViewModel]
 
-    var pantry: Pantry
-    var sectionVMs: [PrepSectionViewModel]
-
-    init(pantry: Pantry) {
-        self.pantry = pantry
+    init(service: Service = Service.shared()) {
+        self.service = service
         self.sectionVMs = Food.all.map { food in
-            let itemsForFood = pantry[food] ?? []
-            return PrepSectionViewModel(items: itemsForFood)
+            return PrepSectionViewModel(food: food, ingredients: service.ingredientsInPrep(for: food))
         }
-    }
-
-    var tldr: Pantry {
-        var current: Pantry = [:]
-        Food.all.enumerated().forEach { (index, food) in
-            current[food] = sectionVMs[index].getItems()
-        }
-
-        return current
     }
 
     var hasSelectedIngredients: Bool {
-        return sectionVMs.reduce(0, { $0 + $1.selectedItemCount }) > 0
+        return sectionVMs.reduce(0, { $0 + $1.selectedCount }) > 0
     }
 
     func generateRandomSammyName() -> String {
@@ -43,6 +32,8 @@ struct PrepViewModel: ViewModel {
     }
 
     func removeIngredientAt(_ indexPath: IndexPath) -> Bool {
+        guard let food = Food.forSection(indexPath.section) else { return false }
+        service.removePrepIngredient(for: food, at: indexPath.row)
         sectionVMs[indexPath.section].removeIngredientAt(row: indexPath.row)
         return true
     }
@@ -55,12 +46,17 @@ struct PrepViewModel: ViewModel {
         return sectionVMs[indexPath.section].isIngredientSelectedAt(row: indexPath.row)
     }
 
-    func gatherIngredientsForSandwich() -> [Ingredient] {
-        var ingredients: [Ingredient] = []
+    func makeSandwich(_ name: String? = nil, _ detail: String = "") {
+        let sammyName = name ?? generateRandomSammyName()
+        var sandwichStuff: Pantry = [:]
         sectionVMs.forEach { sectionVM in
-            ingredients.append(contentsOf: sectionVM.gatherSelectedIngredients())
+            sandwichStuff[sectionVM.food] = sectionVM.gatherSelectedIngredients()
         }
-        return ingredients
+
+        service.makeSandwichFrom(sandwichStuff, with: sammyName, and: detail)
+        sectionVMs = Food.all.map { food in
+            return PrepSectionViewModel(food: food, ingredients: service.ingredientsInPrep(for: food))
+        }
     }
 
     func resetSelections() {

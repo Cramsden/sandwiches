@@ -2,7 +2,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class IngredientService {
+class NetworkService {
     private let dateFormatter = DateFormatter()
 
     func getAllIngredients(_ onCompletion: @escaping (Pantry) -> Void) {

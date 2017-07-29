@@ -1,6 +1,6 @@
 import UIKit
 
-protocol Eater {
+protocol Eater: class {
     func eat(_ sandwich: Sandwich)
 }
 
@@ -8,7 +8,7 @@ class SandwichDetailVC: UIViewController {
     fileprivate let ingredientsPerRow = CGFloat(4)
     fileprivate let insets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     var sandwich: Sandwich?
-    var delegate: Eater!
+    weak var delegate: Eater!
 
     @IBOutlet weak var ingredientCollection: UICollectionView!
 

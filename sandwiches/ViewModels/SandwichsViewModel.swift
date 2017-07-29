@@ -3,22 +3,22 @@ import UIKit
 
 struct SandwichesViewModel {
     let noSammiesText = "😭\nNo sandwiches!\n You should make some, eh?\n🤔"
-    private var sandwiches: [Sandwich]
+    private let service: Service
 
     var hasSandwiches: Bool {
-        return sandwiches.count > 0
+        return service.sharedSandwiches.count > 0
     }
 
     var numberOfSandwiches: Int {
-        return sandwiches.count
+        return service.sharedSandwiches.count
     }
 
-    init(sandwiches: [Sandwich]) {
-        self.sandwiches = sandwiches
+    init(service: Service = Service.shared()) {
+        self.service = service
     }
 
     func sandwich(at index: Int) -> Sandwich? {
-        return sandwiches.elementMaybeAt(index)
+        return service.sharedSandwiches.elementMaybeAt(index)
     }
 
     func colorFor(_ sandwich: Sandwich) -> UIColor {
@@ -29,7 +29,9 @@ struct SandwichesViewModel {
         }
     }
 
-    mutating func remove(at index: Int) {
-        sandwiches.remove(at: index)
+    func remove(_ sandwich: Sandwich) {
+        if let index = service.sharedSandwiches.index(of: sandwich) {
+            service.removeSandwich(at: index)
+        }
     }
 }

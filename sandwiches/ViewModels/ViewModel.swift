@@ -1,6 +1,5 @@
 protocol ViewModel {
     associatedtype Section: SectionViewModel
-    var pantry: Pantry { get }
     var sectionVMs: [Section] { get }
     var numberOfTypesOfFood: Int { get }
 
