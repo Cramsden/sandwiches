@@ -50,3 +50,13 @@ struct Ingredient {
         )
     }
 }
+
+extension Ingredient: Equatable {}
+
+func == (lhs: Ingredient, rhs: Ingredient) -> Bool {
+    return lhs.name == rhs.name &&
+        lhs.details == rhs.details &&
+        lhs.amount == rhs.amount &&
+        lhs.category == rhs.category &&
+        lhs.bestBy == rhs.bestBy
+}

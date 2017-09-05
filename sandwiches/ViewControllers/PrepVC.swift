@@ -56,6 +56,7 @@ class PrepVC: UIViewController {
 
             self.sammyTime.isEnabled = self.prepVM.hasSelectedIngredients
             self.preppedView.isHidden = true
+            self.tableView.reloadData()
         }
         alertController.addAction(surpriseMeAction)
 
@@ -67,6 +68,7 @@ class PrepVC: UIViewController {
 
             self.sammyTime.isEnabled = self.prepVM.hasSelectedIngredients
             self.preppedView.isHidden = true
+            self.tableView.reloadData()
         }
 
         yesAction.isEnabled = false

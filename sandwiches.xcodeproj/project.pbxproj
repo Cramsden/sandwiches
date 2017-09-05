@@ -11,7 +11,6 @@
 		6803D0341EEA21530046AC98 /* PrepSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6803D0331EEA21530046AC98 /* PrepSectionViewModel.swift */; };
 		6803D0361EEA21860046AC98 /* PantrySectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6803D0351EEA21860046AC98 /* PantrySectionViewModel.swift */; };
 		687C632D1EC3F77A008A574C /* PantryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687C632C1EC3F77A008A574C /* PantryViewModel.swift */; };
-		68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */; };
 		B33F35A01ED0A0C8001B6E21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B33F359F1ED0A0C8001B6E21 /* Assets.xcassets */; };
 		B35FE1A11EE790D000B17D42 /* PrepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35FE1A01EE790D000B17D42 /* PrepViewModel.swift */; };
 		B36948461E5A595500FB5148 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B36948451E5A595500FB5148 /* NetworkService.swift */; };
@@ -41,7 +40,6 @@
 		6803D0331EEA21530046AC98 /* PrepSectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrepSectionViewModel.swift; path = ViewModels/PrepSectionViewModel.swift; sourceTree = "<group>"; };
 		6803D0351EEA21860046AC98 /* PantrySectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PantrySectionViewModel.swift; path = ViewModels/PantrySectionViewModel.swift; sourceTree = "<group>"; };
 		687C632C1EC3F77A008A574C /* PantryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PantryViewModel.swift; path = ViewModels/PantryViewModel.swift; sourceTree = "<group>"; };
-		68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ParentVC.swift; path = ViewControllers/ParentVC.swift; sourceTree = "<group>"; };
 		693BCF5446A664BD37756AFB /* Pods-sandwiches.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sandwiches.release.xcconfig"; path = "Pods/Target Support Files/Pods-sandwiches/Pods-sandwiches.release.xcconfig"; sourceTree = "<group>"; };
 		98B7E1E8D64F226140B4B5A3 /* Pods_sandwiches.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sandwiches.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33F359F1ED0A0C8001B6E21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = sandwiches/Assets.xcassets; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 				B3925BED1DF1FBCA003C596A /* PantryVC.swift */,
 				B3925BEE1DF1FBCA003C596A /* PrepVC.swift */,
 				B3925BEF1DF1FBCA003C596A /* SandwichVC.swift */,
-				68FD4F711E5FCCF1006E49F6 /* ParentVC.swift */,
 				B3CD8D891E75D852000E3446 /* SandwichDetailVC.swift */,
 			);
 			name = ViewControllers;
@@ -328,7 +325,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -342,7 +339,6 @@
 				B3925BF01DF1FBCA003C596A /* PantryVC.swift in Sources */,
 				B397B0B11DDF79C10079BF6A /* Ingredient.swift in Sources */,
 				B3697BB41DDF6E90002A3EE0 /* AppDelegate.swift in Sources */,
-				68FD4F721E5FCCF1006E49F6 /* ParentVC.swift in Sources */,
 				B3D9D1291EFCB4F500F1E7F6 /* DateExtension.swift in Sources */,
 				B37117301E9BEED8003D3484 /* IngredientCell.swift in Sources */,
 				B37117321E9BEF1C003D3484 /* Sandwich.swift in Sources */,

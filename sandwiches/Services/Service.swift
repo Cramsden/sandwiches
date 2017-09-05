@@ -31,6 +31,21 @@ class Service {
     }
 
     func makeSandwichFrom(_ pantry: Pantry, with name: String, and detail: String) {
+        var newPantry = Pantry()
+        var sammyIngredients: [Ingredient] = []
+        Food.all.forEach { food in
+            var prepIngredients = prepPantry[food] ?? []
+            pantry[food]?.forEach { ingredient in
+                sammyIngredients.append(ingredient)
+                if let index = prepIngredients.index(of: ingredient) {
+                    prepIngredients.remove(at: index)
+                }
+            }
+            newPantry[food] = prepIngredients
+        }
+        let newSammy = Sandwich(name: name, ingredients: sammyIngredients, details: detail)
+        sharedSandwiches.append(newSammy)
+        prepPantry = newPantry
         // TODO Sandwich
     }
 
